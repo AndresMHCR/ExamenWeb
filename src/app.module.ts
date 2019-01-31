@@ -26,7 +26,8 @@ import { RolxusuarioEntity } from './RolPorUsuario/rolxusuario.entity';
           RolxusuarioEntity
         ]
       }
-    ),UsuarioModule,
+    ),
+    UsuarioModule,
     RolModule
   ],
   controllers: [AppController],

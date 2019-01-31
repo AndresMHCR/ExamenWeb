@@ -15,6 +15,9 @@ export class UsuarioEntity{
       contraseña:string;
 
       @Column()
+      correo:string;
+
+      @Column()
       fecha_nacimiento:Date;
 
   @OneToMany(
