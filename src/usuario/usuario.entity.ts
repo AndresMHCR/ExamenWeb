@@ -1,18 +1,25 @@
 //usuario.entity.ts
 
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { RolxusuarioEntity } from '../RolPorUsuario/rolxusuario.entity';
 
 @Entity('usuario')
 export class UsuarioEntity{
-    @PrimaryGeneratedColumn()
-    id: number;
+      @PrimaryGeneratedColumn()
+      id: number;
 
-    @Column()
-    username:string;
+      @Column()
+      nombre:string;
 
-    @Column()
-    password:string;
+      @Column()
+      contraseña:string;
 
-    @Column()
-    tipo:string;
+      @Column()
+      fecha_nacimiento:Date;
+
+  @OneToMany(
+    type => RolxusuarioEntity,  // Que tabla vamos a relacionar
+    rolxusuario => rolxusuario.usuario  // Campo que hace referencia FK
+  )
+  rolxusuario: RolxusuarioEntity[];
 }
