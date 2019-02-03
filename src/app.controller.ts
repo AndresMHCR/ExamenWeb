@@ -1,6 +1,7 @@
 import {Body, Controller, Get, HttpCode, Post, Res, Session} from '@nestjs/common';
 import { AppService } from './app.service';
 import {UsuarioService} from "./usuario/usuario.service";
+import { UsuarioEntity } from './usuario/usuario.entity';
 
 @Controller()
 export class AppController {
@@ -9,13 +10,6 @@ export class AppController {
 
   }
 
-
-  @Get('usuarios')
-  mostrarLogin(
-    @Res() res
-  ){
-    res.render('usuarios')
-  }
 
   @Post('login')
   @HttpCode(200)
@@ -35,16 +29,10 @@ export class AppController {
     }
   }
 
-  @Get('menu') // url
-  mostrarMenu(
-    @Res() res
-  ){
-    res.render('menu')
-  }
-
 
 }
 export interface Usuario {
+  id?: number,
   nombre: string;
   correo: string;
   fecha_nacimiento: string;

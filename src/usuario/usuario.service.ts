@@ -2,7 +2,7 @@
 
 import {Injectable} from "@nestjs/common";
 import {UsuarioEntity} from "./usuario.entity";
-import {FindOneOptions, Repository} from "typeorm";
+import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
 import { Usuario } from '../app.controller';
 
@@ -22,10 +22,8 @@ export class UsuarioService{
   ];
   constructor(
     @InjectRepository(UsuarioEntity)
-    private readonly _usuarioRepository:
-      Repository<UsuarioEntity>
-  ){
-  }
+    private readonly _usuarioRepository: Repository<UsuarioEntity>
+  ){}
 
   async autenticar(username: string,
                    password: string ):Promise<boolean>{
@@ -41,5 +39,27 @@ export class UsuarioService{
     }else {
       return false;
     }
+  }
+
+  buscar(parametrosBusqueda?: FindManyOptions<UsuarioEntity>)
+    : Promise<UsuarioEntity[]> {
+    return this._usuarioRepository.find(parametrosBusqueda)
+  }
+
+  eliminar(idUsuario: number): Promise<UsuarioEntity>{
+    const usuarioAEliminar: UsuarioEntity = this._usuarioRepository
+      .create({
+        id: idUsuario
+      });
+    return this._usuarioRepository.remove(usuarioAEliminar);
+  }
+
+  actualizar(usuario: Usuario): Promise<UsuarioEntity> {
+    const usuarioEntity: UsuarioEntity = this._usuarioRepository.create(usuario);
+    return this._usuarioRepository.save(usuarioEntity)
+  }
+
+  buscarPorId(idNoticia: number): Promise<UsuarioEntity>{
+    return this._usuarioRepository.findOne(idNoticia);
   }
 }

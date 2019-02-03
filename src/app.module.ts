@@ -14,7 +14,7 @@ import { RolxusuarioEntity } from './RolPorUsuario/rolxusuario.entity';
       {
         type: 'mysql',
         host: 'localhost',
-        port: 32773 ,
+        port: 32769 ,
         database: 'comida',
         username: 'andres',
         password: '12345',

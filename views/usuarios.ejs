@@ -31,11 +31,37 @@
             <th width="25%">Nombre</th>
             <th width="30%">Correo</th>
             <th width="20%">Fecha de Nacimiento</th>
-            <th width="25%">Acciones</th>
+            <th width="25%">Accion</th>
+
         </tr>
         </thead>
         <tbody>
-       
+        <% arreglo.forEach( (usuario)=> { %>
+            <tr>
+                <!-- td -> table detail -->
+                <td><%= usuario.nombre %></td>
+                <td><%= usuario.correo %></td>
+                <td><%= usuario.fecha_nacimiento %></td>
+                <td>
+                    <form action="/usuario/eliminar/<%= usuario.id %>" method="POST">
+                        <!--<button type="button"> clickea sin problemas</button>
+                        <button>Yo tambien envio informacion</button>
+                        -->
+                        <button class="btn btn-outline-danger btn-block espaciado-boton"
+                                type="submit">
+                            Eliminar
+                        </button>
+                    </form>
+                    <a href="/usuario/actualizar-usuario/<%= usuario.id %>"
+                       class="quitar-link">
+                        <button
+                                class="btn btn-outline-info btn-block espaciado-boton">
+                            Actualizar
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        <% }) %>
         </tbody>
 
 
