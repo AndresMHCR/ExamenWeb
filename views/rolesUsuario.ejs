@@ -1,0 +1,61 @@
+<%- include('header',{titulo:'Usuarios'});%>
+
+<% const existeMensaje = typeof mensaje !== "undefined" %>
+
+<% if(existeMensaje){ %>
+    <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+    </div>
+<% } %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">Usuario
+            <div>
+                <label for="nombre">Nombre</label>
+                <input id="nombre"
+                       name="nombre"
+                       type="text"
+                       value="<%= usuario.nombre%>"
+                >
+            </div>
+            <div>
+                <label for="correo">Correo</label>
+                <input id="correo"
+                       name="correo"
+                       type="text"
+                       value="<%= usuario.correo %>"
+                >
+            </div>
+            <div>
+                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                <input id="fecha_nacimiento"
+                       name="fecha_nacimiento"
+                       type="text"
+                       value="<%= usuario.fecha_nacimiento %>"
+                >
+            </div>
+        </div>
+        <div class="col-sm-3">Roles
+            <table class="table table-hover animated slideInLeft">
+                <thead>
+                <tr>
+                    <!-- th -> table header -->
+                    <th width="100%">Roles</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-sm-3">Agregar roles</div>
+
+    </div>
+
+</div>
+
+</body>

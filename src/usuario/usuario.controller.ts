@@ -102,7 +102,7 @@ export class UsuarioController {
 
     response
       .render(
-        'crear-noticia',
+        'rolesUsuario',
         {
           usuario: usuarioEncontrado
         }
