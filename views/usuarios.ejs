@@ -1,4 +1,14 @@
-<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+<%- include('header',{titulo:'Usuarios'});%>
+
+<% const existeMensaje = typeof mensaje !== "undefined" %>
+
+<% if(existeMensaje){ %>
+    <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+    </div>
+<% } %>
 
 <div class ="container">
     <div class="row">
