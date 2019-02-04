@@ -22,8 +22,8 @@ export class AppController {
       .autenticar(username, password);
 
     if(respuesta){
-      res.send('ok');
-      //res.redirect('menu')
+      //res.send('ok');
+      res.redirect('comida/inicio')
     }else{
       res.redirect('login.html');
     }
