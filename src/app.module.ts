@@ -7,6 +7,8 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { RolEntity } from './rol/rol.entity';
 import { RolModule } from './rol/rol.module';
 import { RolxusuarioEntity } from './RolPorUsuario/rolxusuario.entity';
+import { ComidaEntity } from './comida/comida.entity';
+import { ComidaModule } from './comida/comida.module';
 
 @Module({
   imports: [
@@ -21,12 +23,14 @@ import { RolxusuarioEntity } from './RolPorUsuario/rolxusuario.entity';
         synchronize: true,
         dropSchema: false,
         entities: [
+          ComidaEntity,
           UsuarioEntity,
           RolEntity,
           RolxusuarioEntity
         ]
       }
     ),
+    ComidaModule,
     UsuarioModule,
     RolModule
   ],

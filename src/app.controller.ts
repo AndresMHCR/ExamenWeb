@@ -32,8 +32,17 @@ export class AppController {
 
 }
 export interface Usuario {
-  id?: number,
+  id?: number;
   nombre: string;
   correo: string;
   fecha_nacimiento: string;
+}
+
+export interface Comida {
+  id?: number;
+  nombrePlato: string;
+  descricionPlato: string;
+  nacionalidad: string;
+  numeroPersonas: number;
+  picante: boolean;
 }
