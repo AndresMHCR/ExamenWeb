@@ -2,6 +2,7 @@
 
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { RolxusuarioEntity } from '../RolPorUsuario/rolxusuario.entity';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 
 @Entity('comida')
 export class ComidaEntity{
@@ -24,10 +25,10 @@ export class ComidaEntity{
   @Column()
   picante:boolean;
 
-/*
+
   @OneToMany(
-    type => RolxusuarioEntity,  // Que tabla vamos a relacionar
-    rolxusuario => rolxusuario.usuario  // Campo que hace referencia FK
+    type => IngredienteEntity,  // Que tabla vamos a relacionar
+    ingrediente => ingrediente.comida // Campo que hace referencia FK
   )
-  rolxusuario: RolxusuarioEntity[];*/
+  ingredientes: IngredienteEntity[];
 }

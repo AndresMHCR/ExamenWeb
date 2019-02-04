@@ -9,6 +9,8 @@ import { RolModule } from './rol/rol.module';
 import { RolxusuarioEntity } from './RolPorUsuario/rolxusuario.entity';
 import { ComidaEntity } from './comida/comida.entity';
 import { ComidaModule } from './comida/comida.module';
+import { IngredienteEntity } from './ingrediente/ingrediente.entity';
+import { IngredienteModule } from './ingrediente/ingrediente.module';
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ import { ComidaModule } from './comida/comida.module';
         dropSchema: false,
         entities: [
           ComidaEntity,
+          IngredienteEntity,
           UsuarioEntity,
           RolEntity,
           RolxusuarioEntity
@@ -31,6 +34,7 @@ import { ComidaModule } from './comida/comida.module';
       }
     ),
     ComidaModule,
+    IngredienteModule,
     UsuarioModule,
     RolModule
   ],

@@ -46,3 +46,13 @@ export interface Comida {
   numeroPersonas: number;
   picante: boolean;
 }
+
+export interface Ingrediente {
+  id?: number;
+  nombreIngrediente: string;
+  cantidad: number;
+  descripcionPreparacion: string;
+  opcional: boolean;
+  tipoIngrediente:string,
+  necesitaRefrigeracion: boolean;
+}

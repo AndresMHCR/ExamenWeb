@@ -1,4 +1,4 @@
-<%- include('header',{titulo:'Comida'});%>
+<%- include('header',{titulo:'Ingrediente'});%>
 
 <% const existeMensaje = typeof mensaje !== "undefined" %>
 
@@ -38,26 +38,28 @@
         <thead>
         <tr>
             <!-- th -> table header -->
-            <th width="20%">Nombre Plato</th>
-            <th width="25%">Descripcion</th>
-            <th width="10%">Nacionalidad</th>
-            <th width="10%">Numero de Personas</th>
-            <th width="10%">Picante</th>
+            <th width="20%">Nombre Ingrediente</th>
+            <th width="10%">Cantidad</th>
+            <th width="15%">Descrpcion de Preparacion</th>
+            <th width="10%">Opcional</th>
+            <th width="10%">Tipo</th>
+            <th width="10%">Necesita Refrigeracion</th>
             <th width="25%">Accion</th>
 
         </tr>
         </thead>
         <tbody>
-        <% arreglo.forEach( (comida)=> { %>
+        <% arreglo.forEach( (ingrediente)=> { %>
             <tr>
                 <!-- td -> table detail -->
-                <td><%= comida.nombrePlato %></td>
-                <td><%= comida.descripcionPlato %></td>
-                <td><%= comida.nacionalidad %></td>
-                <td><%= comida.numeroPersonas %></td>
-                <td><%= comida.picante %></td>
+                <td><%= ingrediente.nombreIngrediente %></td>
+                <td><%= ingrediente.cantidad %></td>
+                <td><%= ingrediente.descripcionPreparacion %></td>
+                <td><%= ingrediente.opcional %></td>
+                <td><%= ingrediente.tipoIngrediente %></td>
+                <td><%= ingrediente.necesitaRefrigeracion %></td>
                 <td>
-                    <form action="/comida/eliminar/<%= comida.id %>" method="POST">
+                    <form action="/ingrediente/eliminar/<%= ingrediente.id %>" method="POST">
                         <!--<button type="button"> clickea sin problemas</button>
                         <button>Yo tambien envio informacion</button>
                         -->
@@ -66,20 +68,14 @@
                             Eliminar
                         </button>
                     </form>
-                    <a href="/comida/actualizar-comida/<%= comida.id %>"
+                    <a href="/ingrediente/actualizar-ingrediente/<%= ingrediente.id %>"
                        class="quitar-link">
                         <button
                                 class="btn btn-outline-info btn-block espaciado-boton">
                             Actualizar
                         </button>
                     </a>
-                    <a href="/comida/actualizar-comida/<%= comida.id %>"
-                       class="quitar-link">
-                        <button
-                                class="btn btn-outline-secondary btn-block espaciado-boton">
-                            Ingredientes
-                        </button>
-                    </a>
+
                 </td>
             </tr>
         <% }) %>
