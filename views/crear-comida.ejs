@@ -10,9 +10,9 @@
             <div>
                 <% const estaCreando = typeof comida === "undefined"%>
 
-                <h1> <%= estaCreando ? 'Crear':'Actualizar' %> noticia</h1>
+                <h1> <%= estaCreando ? 'Crear':'Actualizar' %> Comida</h1>
 
-                <p><%= estaCreando ? 'Cree':'Actualice' %> una noticia</p>
+                <p><%= estaCreando ? 'Cree':'Actualice' %> una comida</p>
 
                 <!-- emmet -->
                 <form action="/comida/<%= estaCreando ? 'crear' : 'actualizar' %>-comida/<%= estaCreando ? '' : comida.id %>"
