@@ -81,7 +81,8 @@ export class IngredienteController {
         arreglo: ingredientes, // AQUI!
         booleano: false,
         mensaje: mensaje,
-        clase: clase
+        clase: clase,
+        idreferencia: idComida
       }
     );
   }
@@ -109,6 +110,7 @@ export class IngredienteController {
   async actualizarComidaVista(
     @Res() response,
     @Param('idIngrediente') idIngrediente: string,
+    @Query('idComida') idComida:number
   ) {
     // El "+" le transforma en numero a un string
     // numerico
@@ -117,9 +119,10 @@ export class IngredienteController {
 
     response
       .render(
-        'crear-comida',
+        'crear-ingrediente',
         {
-          ingrediente: ingredienteEncontrado
+          ingrediente: ingredienteEncontrado,
+          idref: idComida
         }
       )
 
