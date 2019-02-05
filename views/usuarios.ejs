@@ -11,28 +11,35 @@
 <% } %>
 
 <div class ="container">
-    <div class="row">
-        <div class="col-sm-9">
 
-            <div class="form-group row">
-                <label for="busqueda" class="col-sm-2 col-form-label">Buscar</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="busqueda" placeholder="Buscar">
+    <form method="get" action="/usuario/inicio">
+        <div class="row">
+            <div class="col-sm-9">
+
+                <div class="form-group">
+
+                    <label for="busqueda">Busqueda</label>
+
+                    <input id="busqueda"
+                           type="text"
+                           name="busqueda"
+                           class="form-control">
                 </div>
+
             </div>
+            <div class="col-sm-3">
 
+                <button
+                        class="btn btn-outline-success btn-block espaciado-busqueda">
+
+                    Buscar
+
+                </button>
+
+            </div>
         </div>
-        <div class="col-sm-3">
+    </form>
 
-            <button
-                    class="btn btn-outline-success btn-block ">
-
-                Buscar
-
-            </button>
-
-        </div>
-    </div>
 
     <table class="table table-hover animated slideInLeft">
         <thead>
