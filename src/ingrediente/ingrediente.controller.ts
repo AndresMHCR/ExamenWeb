@@ -32,7 +32,7 @@ export class IngredienteController {
       const consulta1: FindManyOptions<IngredienteEntity> = {
         where: [
           {
-            comidaId: Like(`%${idComida}%`)
+            id: Like(`%${idComida}%`)
           }
         ]
       };
