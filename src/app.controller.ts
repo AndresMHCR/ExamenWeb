@@ -22,8 +22,8 @@ export class AppController {
       .autenticar(username, password);
 
     if(respuesta){
-      res.send('ok');
-      //res.redirect('menu')
+      //res.send('ok');
+      res.redirect('comida/inicio')
     }else{
       res.redirect('login.html');
     }
@@ -32,8 +32,28 @@ export class AppController {
 
 }
 export interface Usuario {
-  id?: number,
+  id?: number;
   nombre: string;
   correo: string;
   fecha_nacimiento: string;
+}
+
+export interface Comida {
+  id?: number;
+  nombrePlato: string;
+  descricionPlato: string;
+  nacionalidad: string;
+  numeroPersonas: number;
+  picante: boolean;
+}
+
+export interface Ingrediente {
+  id?: number;
+  nombreIngrediente: string;
+  cantidad: number;
+  descripcionPreparacion: string;
+  opcional: boolean;
+  tipoIngrediente: string;
+  necesitaRefrigeracion: boolean;
+  comidaId?: number;
 }

@@ -1,0 +1,91 @@
+
+
+<%- include('header',{titulo:"Ingrediente"})%>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <% const estaCreando = typeof ingrediente === "undefined"%>
+
+                <h1> <%= estaCreando ? 'Crear':'Actualizar' %> Ingredietne</h1>
+
+                <p><%= estaCreando ? 'Cree':'Actualice' %> un Ingrediente</p>
+
+                <!-- emmet -->
+                <form action="/ingrediente/<%= estaCreando ? 'crear' : 'actualizar' %>-ingrediente/<%= estaCreando ? '' : ingrediente.id %>"
+                      method="POST">
+
+                    <div>
+                        <label for="nombreIngrediente">Nombre del ingrediente</label>
+                        <input id="nombreIngrediente"
+                               name="nombreIngrediente"
+                               type="text"
+                               value="<%= estaCreando ? '' : ingrediente.nombreIngrediente %>"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="cantidad">Cantidad</label>
+                        <input id="cantidad"
+                               name="cantidad"
+                               type="number"
+                               value="<%= estaCreando ? '' : ingrediente.cantidad %>"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="descripcionPreparacion">Descripcion Preparacion</label>
+                        <textarea id="descripcionPreparacion"
+                                  name="descripcionPreparacion"
+                                  cols="30" rows="4">
+                            <%= estaCreando ? '' : ingrediente.descripcionPreparacion %>
+                        </textarea>
+                    </div>
+                    <div>
+                        <label for="opcional">Opcional</label>
+                        <input id="opcional"
+                               name="opcional"
+                               type="text"
+                               value="<%= estaCreando ? '' : ingrediente.opcional %>"
+                        >
+                    </div>
+                    <div>
+                        <label for="tipoIngrediente">Tipo de Ingrediente</label>
+                        <input id="tipoIngrediente"
+                               name="tipoIngrediente"
+                               type="text"
+                               value="<%= estaCreando ? '' : ingrediente.tipoIngrediente %>"
+                        >
+                    </div>
+                    <div>
+                        <label for="necesitaRefrigeracion">Necesita Refrigerancion</label>
+                        <input id="necesitaRefrigeracion"
+                               name="necesitaRefrigeracion"
+                               type="text"
+                               value="<%= estaCreando ? '' : ingrediente.necesitaRefrigeracion %>"
+                        >
+                    </div>
+                    <div>
+                        <label for="idComida">id Comida</label>
+                        <input disabled
+                               id="idComida"
+                               name="idCOmida"
+                               type="text"
+                               value="<%= estaCreando ? '' : idref %>"
+                        >
+                    </div>
+
+                    <button><%= estaCreando ? 'Crear' : 'Actualizar' %> comida</button>
+
+                </form>
+
+                <a href="/ingrediente/inicio?idComida=<%= idref%>">
+                    <button>Regresar</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,8 +18,12 @@ export class UsuarioEntity{
       @Column()
       correo:string;
 
-      @Column()
-      fecha_nacimiento:Date;
+      @Column({
+        name: 'fecha_nacimiento',
+        type: "date"
+      })
+      fechaNacimiento: Date;
+
 
   @OneToMany(
     type => RolxusuarioEntity,  // Que tabla vamos a relacionar

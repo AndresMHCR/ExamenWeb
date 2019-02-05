@@ -1,0 +1,73 @@
+
+
+<%- include('header',{titulo:"comida"})%>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <% const estaCreando = typeof comida === "undefined"%>
+
+                <h1> <%= estaCreando ? 'Crear':'Actualizar' %> Comida</h1>
+
+                <p><%= estaCreando ? 'Cree':'Actualice' %> una comida</p>
+
+                <!-- emmet -->
+                <form action="/comida/<%= estaCreando ? 'crear' : 'actualizar' %>-comida/<%= estaCreando ? '' : comida.id %>"
+                      method="POST">
+
+                    <div>
+                        <label for="nombrePlato">Nombre del plato</label>
+                        <input id="nombrePlato"
+                               name="nombrePlato"
+                               type="text"
+                               value="<%= estaCreando ? '' : comida.nombrePlato %>"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="descripcion">Descripcion</label>
+                        <textarea id="descripcion"
+                                  name="descripcion"
+                                  cols="30" rows="4">
+                            <%= estaCreando ? '' : comida.descripcionPlato %>
+                        </textarea>
+                    </div>
+                    <div>
+                        <label for="nacionalidad">Nacionalidad</label>
+                        <input id="nacionalidad"
+                               name="nacionalidad"
+                               type="text"
+                               value="<%= estaCreando ? '' : comida.nacionalidad %>"
+                        >
+                    </div>
+                    <div>
+                        <label for="numeroPersonas">Numero de Personas</label>
+                        <input id="numeroPersonas"
+                               name="numeroPersonas"
+                               type="number"
+                               value="<%= estaCreando ? '' : comida.numeroPersonas %>"
+                        >
+                    </div>
+                    <div>
+                        <label for="picante">Picante</label>
+                        <input id="picante"
+                               name="picante"
+                               type="text"
+                               value="<%= estaCreando ? '' : comida.picante %>"
+                        >
+                    </div>
+
+                    <button><%= estaCreando ? 'Crear' : 'Actualizar' %> comida</button>
+
+                </form>
+
+                <a href="/comida/inicio">
+                    <button>Regresar</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

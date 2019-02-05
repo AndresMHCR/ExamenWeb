@@ -120,7 +120,7 @@ export class UsuarioController {
     usuario.id = +idUsuario;
     await this._usuarioService.actualizar(usuario);
 
-    const parametrosConsulta = `?accion=actualizar&titulo=${usuario.nombre}`;
+    const parametrosConsulta = `?accion=actualizar&nombre=${usuario.nombre}`;
 
     response.redirect('/usuario/inicio' + parametrosConsulta);
 

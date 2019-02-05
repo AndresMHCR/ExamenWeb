@@ -1,0 +1,93 @@
+<%- include('header',{titulo:'Comida'});%>
+
+<% const existeMensaje = typeof mensaje !== "undefined" %>
+
+<% if(existeMensaje){ %>
+    <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+    </div>
+<% } %>
+
+<div class ="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <div class="form-group row">
+                <label for="busqueda" class="col-sm-2 col-form-label">Buscar</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="busqueda" placeholder="Buscar">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+
+            <button
+                    class="btn btn-outline-success btn-block ">
+
+                Buscar
+
+            </button>
+
+        </div>
+    </div>
+
+    <table class="table table-hover animated slideInLeft">
+        <thead>
+        <tr>
+            <!-- th -> table header -->
+            <th width="20%">Nombre Plato</th>
+            <th width="25%">Descripcion</th>
+            <th width="10%">Nacionalidad</th>
+            <th width="10%">Numero de Personas</th>
+            <th width="10%">Picante</th>
+            <th width="25%">Accion</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <% arreglo.forEach( (comida)=> { %>
+            <tr>
+                <!-- td -> table detail -->
+                <td><%= comida.nombrePlato %></td>
+                <td><%= comida.descripcionPlato %></td>
+                <td><%= comida.nacionalidad %></td>
+                <td><%= comida.numeroPersonas %></td>
+                <td><%= comida.picante %></td>
+                <td>
+                    <form action="/comida/eliminar/<%= comida.id %>" method="POST">
+                        <!--<button type="button"> clickea sin problemas</button>
+                        <button>Yo tambien envio informacion</button>
+                        -->
+                        <button class="btn btn-outline-danger btn-block espaciado-boton"
+                                type="submit">
+                            Eliminar
+                        </button>
+                    </form>
+                    <a href="/comida/actualizar-comida/<%= comida.id %>"
+                       class="quitar-link">
+                        <button
+                                class="btn btn-outline-info btn-block espaciado-boton">
+                            Actualizar
+                        </button>
+                    </a>
+                    <a href="/ingrediente/inicio?idComida=<%= comida.id %>"
+                       class="quitar-link">
+                        <button
+                                class="btn btn-outline-secondary btn-block espaciado-boton">
+                            Ingredientes
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+
+
+    </table>
+
+
+
+</div>
