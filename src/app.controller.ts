@@ -53,6 +53,7 @@ export interface Ingrediente {
   cantidad: number;
   descripcionPreparacion: string;
   opcional: boolean;
-  tipoIngrediente:string,
+  tipoIngrediente: string;
   necesitaRefrigeracion: boolean;
+  comidaId?: number;
 }
