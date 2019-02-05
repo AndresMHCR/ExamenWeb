@@ -17,6 +17,7 @@ export class IngredienteController {
   @Get('inicio')
   async inicio(
     @Res() response,
+    @Query('idComida') idComida: number,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
     @Query('nombre') nombre: string
@@ -24,6 +25,20 @@ export class IngredienteController {
 
     let mensaje = undefined;
     let clase = undefined;
+    let ingredientes: IngredienteEntity[];
+
+    if(idComida){  //acomodar esto
+      //response.send('ok');
+      const consulta1: FindManyOptions<IngredienteEntity> = {
+        where: [
+          {
+            comidaId: Like(`%${idComida}%`)
+          }
+        ]
+      };
+      ingredientes = await this._ingredienteService.buscar(consulta1);
+      response.send(ingredientes);
+    }
 
     if (accion && nombre) {
       switch (accion) {
@@ -39,7 +54,7 @@ export class IngredienteController {
       }
     }
 
-    let ingredientes: IngredienteEntity[];
+    //let ingredientes: IngredienteEntity[];
 
     if (busqueda) {
 

@@ -119,7 +119,7 @@ export class ComidaController {
     comida.id = +idComida;
     await this._comidaService.actualizar(comida);
 
-    const parametrosConsulta = `?accion=actualizar&titulo=${comida.nombrePlato}`;
+    const parametrosConsulta = `?accion=actualizar&nombre=${comida.nombrePlato}`;
 
     response.redirect('/comida/inicio' + parametrosConsulta);
 

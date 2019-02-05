@@ -19,9 +19,9 @@
                       method="POST">
 
                     <div>
-                        <label for="titulo">Titulo</label>
-                        <input id="titulo"
-                               name="titulo"
+                        <label for="nombrePlato">Nombre del Plat</label>
+                        <input id="nombrePlato"
+                               name="nombrePlato"
                                type="text"
                                value="<%= estaCreando ? '' : comida.nombrePlato %>"
                         >
@@ -47,7 +47,7 @@
                         <label for="numeroPersonas">Numero de Personas</label>
                         <input id="numeroPersonas"
                                name="numeroPersonas"
-                               type="text"
+                               type="number"
                                value="<%= estaCreando ? '' : comida.numeroPersonas %>"
                         >
                     </div>

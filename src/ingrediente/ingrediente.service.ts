@@ -36,4 +36,5 @@ export class IngredienteService{
   buscarPorId(idIngrediente: number): Promise<IngredienteEntity>{
     return this._ingredienteRepository.findOne(idIngrediente);
   }
+
 }

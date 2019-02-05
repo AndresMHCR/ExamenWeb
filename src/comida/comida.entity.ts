@@ -14,16 +14,16 @@ export class ComidaEntity{
   nombrePlato:string;
 
   @Column()
-  descripcionPlato:string;
+  descripcionPlato: string;
 
   @Column()
-  nacionalidad:string;
+  nacionalidad: string;
 
   @Column()
-  numeroPersonas:number;
+  numeroPersonas: number;
 
   @Column()
-  picante:boolean;
+  picante: boolean;
 
 
   @OneToMany(
