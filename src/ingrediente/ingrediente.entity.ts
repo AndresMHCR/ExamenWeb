@@ -31,7 +31,6 @@ export class IngredienteEntity{
     type => ComidaEntity,  // Tipo tabla
     comida => comida.ingredientes
   )
-  @JoinColumn()
   comida: ComidaEntity;
 
 

@@ -2,7 +2,7 @@
 import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
 import { Comida, Ingrediente, Usuario } from '../app.controller';
 
-import {FindManyOptions, Like} from "typeorm";
+import { FindManyOptions, getConnection, Like } from 'typeorm';
 import {validate, ValidationError} from "class-validator";
 import { IngredienteService } from './ingrediente.service';
 import { IngredienteEntity } from './ingrediente.entity';
@@ -29,15 +29,18 @@ export class IngredienteController {
 
     if(idComida){  //acomodar esto
       //response.send('ok');
-      const consulta1: FindManyOptions<IngredienteEntity> = {
+
+      const consulta: FindManyOptions<IngredienteEntity> = {
         where: [
           {
-            idComida: Like(`%${idComida}%`)
+            comida: Like(`%${idComida}%`)
           }
         ]
       };
-      ingredientes = await this._ingredienteService.buscar(consulta1);
-      response.send(ingredientes);
+      ingredientes = await this._ingredienteService.buscar(consulta);
+      //response.send(ingredientes);
+    }else {
+      ingredientes = await this._ingredienteService.buscar();
     }
 
     if (accion && nombre) {
@@ -68,8 +71,6 @@ export class IngredienteController {
 
       ingredientes = await this._ingredienteService.buscar(consulta);
 
-    } else {
-      ingredientes = await this._ingredienteService.buscar();
     }
 
 
