@@ -2,10 +2,13 @@
 import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
 import { Comida, Usuario } from '../app.controller';
 
-import {FindManyOptions, Like} from "typeorm";
+import { FindManyOptions, FindOneOptions, Like } from 'typeorm';
 import {validate, ValidationError} from "class-validator";
 import { ComidaService } from './comida.service';
 import { ComidaEntity } from './comida.entity';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Controller('comida')
 export class ComidaController {
@@ -17,6 +20,7 @@ export class ComidaController {
   @Get('inicio')
   async inicio(
     @Res() response,
+    @Query('idUsuario') idUsuario: string,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
     @Query('nombre') nombre: string
@@ -24,7 +28,23 @@ export class ComidaController {
 
     let mensaje = undefined;
     let clase = undefined;
+    let comidas: ComidaEntity[];
 
+    if(idUsuario){  //acomodar esto
+      //response.send('ok');
+
+      const consulta: FindManyOptions<ComidaEntity> =  //arreglar que se vea las comidas de acuerdo al usuario con el nombre
+        where: [
+          {
+            usuario: Like(`%${idUsuario}%`)
+          }
+        ]
+      };
+      comidas = await this._comidaService.buscar(consulta);
+      //response.send(ingredientes);
+    }else {
+      comidas = await this._comidaService.buscar();
+    }
     if (accion && nombre) {
       switch (accion) {
         case 'borrar':
@@ -39,8 +59,6 @@ export class ComidaController {
       }
     }
 
-    let comidas: ComidaEntity[];
-
     if (busqueda) {
 
       const consulta: FindManyOptions<ComidaEntity> = {
@@ -53,8 +71,6 @@ export class ComidaController {
 
       comidas = await this._comidaService.buscar(consulta);
 
-    } else {
-      comidas = await this._comidaService.buscar();
     }
 
 

@@ -2,6 +2,8 @@ import {Body, Controller, Get, HttpCode, Post, Res, Session} from '@nestjs/commo
 import { AppService } from './app.service';
 import {UsuarioService} from "./usuario/usuario.service";
 import { UsuarioEntity } from './usuario/usuario.entity';
+import { FindManyOptions, Like } from 'typeorm';
+import { IngredienteEntity } from './ingrediente/ingrediente.entity';
 
 @Controller()
 export class AppController {
@@ -16,6 +18,7 @@ export class AppController {
   async ejecutarLogin(
     @Body('username') username:string,
     @Body('password') password:string,
+
     @Res() res
   ){
     const respuesta = await this._usuarioService
@@ -23,7 +26,8 @@ export class AppController {
 
     if(respuesta){
       //res.send('ok');
-      res.redirect('comida/inicio')
+      const parametroConsulta = `?idUsuario=${username}`
+      res.redirect('comida/inicio' + parametroConsulta)
     }else{
       res.redirect('login.html');
     }
