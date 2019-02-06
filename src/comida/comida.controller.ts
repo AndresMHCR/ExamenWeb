@@ -33,7 +33,7 @@ export class ComidaController {
     if(idUsuario){  //acomodar esto
       //response.send('ok');
 
-      const consulta: FindManyOptions<ComidaEntity> =  //arreglar que se vea las comidas de acuerdo al usuario con el nombre
+      const consulta: FindManyOptions<ComidaEntity> = { //arreglar esto con respecto al usuario con nombre que liste comidas por usuario
         where: [
           {
             usuario: Like(`%${idUsuario}%`)
