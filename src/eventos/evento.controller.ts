@@ -7,12 +7,15 @@ import {FindManyOptions, Like} from "typeorm";
 import {validate, ValidationError} from "class-validator";
 import { EventoService } from './evento.service';
 import { EventoEntity } from './evento.entity';
+import { IngredienteService } from '../ingrediente/ingrediente.service';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 
 
 @Controller('evento')
 export class EventoController {
 
-  constructor(private readonly _eventoService: EventoService) {
+  constructor(private readonly _eventoService: EventoService,
+              private readonly _ingredienteService: IngredienteService) {
 
   }
 
@@ -117,7 +120,7 @@ export class EventoController {
       evento.nombreEvento
       }`;
 
-    response.redirect('/evento/inicio' + parametrosConsulta)
+    response.redirect('/evento/registrar' + parametrosConsulta)
   }
 
   @Get('registrar')
@@ -147,13 +150,6 @@ export class EventoController {
         arreglo: eventos
       })
   }
-
-  @Get('editar/:idEvento')
-  async editarEvento(
-    @Param('idEvento')idEvento: string,
-    @Res() response,
-    //@Session() session,
-  ) {
     /*
     let admin =undefined;
     let usuario = undefined;
@@ -165,7 +161,7 @@ export class EventoController {
       if(session.usuario.esAdministrador){
         admin = true
       }
-    }*/
+    }
     const eventoEncontrado = await this._eventoService
       .buscarPorId(+idEvento);
     response.render(
@@ -176,6 +172,57 @@ export class EventoController {
         //titulo:"Editar evento",
         evento:eventoEncontrado,
       })
+  }*/
+
+  @Get('editar/:idEvento')
+  async agregarIngrediente(
+    @Res() response,
+    @Param('idEvento') idEvento: string
+  ){
+
+    let ingredientes: IngredienteEntity[];
+    ingredientes = await this._ingredienteService.buscar();
+
+    //response.send(idEvento)
+    const eventoEncontrado = await this._eventoService
+      .buscarPorId(+idEvento);
+    response.render(
+      'agregarAEvento',
+      {
+        //esUsuario:usuario,
+        //esAdministrador:admin,
+        //titulo:"Editar evento",
+        evento: eventoEncontrado,
+        ingredientes: ingredientes
+      })
+    //response.render('agregarAEvento')
   }
+
+  @Post('editar/:idEvento')
+  async agregarIngredientePost(
+    @Res() response,
+    @Param('idEvento') idEvento: string,
+    @Query('idIngrediente') idIngrediente:IngredienteEntity
+  ) {
+    const evento = await this._eventoService
+      .buscarPorId(+idEvento);
+
+    //response.send(evento);
+    const ingrediente = await this._ingredienteService
+      .buscarPorId(+idIngrediente)
+
+
+    evento.ingredientes.push(ingrediente);
+    this._eventoService.actualizar(evento);
+
+    //response.send(evento);
+
+    const parametrosConsulta = `/${idEvento}`;
+    response.redirect('/evento/editar' + parametrosConsulta)
+  }
+
+
+
+
 
 }

@@ -3,7 +3,7 @@
 import {Injectable} from "@nestjs/common";
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
-import { Evento, Usuario } from '../app.controller';
+import { Evento, Ingrediente, Usuario } from '../app.controller';
 import { EventoEntity } from './evento.entity';
 
 @Injectable()
@@ -35,4 +35,7 @@ export class EventoService{
   buscarPorId(idEvento: number): Promise<EventoEntity>{
     return this._eventoRepository.findOne(idEvento,{relations: ['ingredientes']});
   }
+
+
+
 }

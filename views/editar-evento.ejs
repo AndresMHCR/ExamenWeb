@@ -4,14 +4,23 @@
 <div class="container">
     <h1> Detalle evento <%= evento.nombreEvento %> </h1>
     <div class="row" >
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <strong>Fecha: </strong><%= evento.fechaEvento %>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <strong>Latitud: </strong><%= evento.latitud %>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <strong>Longitud: </strong><%= evento.longitud %>
+        </div>
+        <div class="col-sm-3">
+            <form action="/evento/editar/agregar-ingrediente/<%= evento.id %>" method="get">
+
+                <button class="btn btn-outline-secondary btn-block espaciado-boton"
+                        type="submit">
+                    Agregar Ingredientes
+                </button>
+            </form>
         </div>
     </div>
     <h2>Ingredientes</h2>
@@ -41,6 +50,15 @@
                 <td><%= ingrediente.opcional %></td>
                 <td><%= ingrediente.tipoIngrediente %></td>
                 <td><%= ingrediente.necesitaRefrigeracion %></td>
+                <td>
+                    <form action="/evento/eliminar/<%= ingrediente.id %>" method="POST">
+
+                        <button class="btn btn-outline-danger btn-block espaciado-boton"
+                                type="submit">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
             </tr>
         <% }) %>
         </tbody>

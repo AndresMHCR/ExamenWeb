@@ -5,18 +5,22 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 import { EventoController } from './evento.controller';
 import { EventoEntity } from './evento.entity';
 import { EventoService } from './evento.service';
+import { IngredienteService } from '../ingrediente/ingrediente.service';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 
 @Module({
     imports:[
         TypeOrmModule
-            .forFeature([EventoEntity
+            .forFeature([EventoEntity,
+              IngredienteEntity
             ])
     ],
     controllers:[
         EventoController
     ],
     providers:[
-        EventoService
+        EventoService,
+      IngredienteService
     ],
     exports: [
         EventoService
