@@ -15,7 +15,8 @@
                 <p><%= estaCreando ? 'Cree':'Actualice' %> un Ingrediente</p>
 
                 <!-- emmet -->
-                <form action="/ingrediente/<%= estaCreando ? 'crear' : 'actualizar' %>-ingrediente/<%= estaCreando ? '' : ingrediente.id %>"
+
+                <form action= ""/ingrediente/<%= estaCreando ? 'crear' : 'actualizar' %>-ingrediente/<%= estaCreando ? '' : ingrediente.id %>?idComida= <%= idref%>"
                       method="POST">
 
                     <div>
@@ -72,13 +73,13 @@
                         <label for="idComida">id Comida</label>
                         <input disabled
                                id="idComida"
-                               name="idCOmida"
+                               name="idComida"
                                type="text"
-                               value="<%= estaCreando ? '' : idref %>"
+                               value="<%= idref %>"
                         >
                     </div>
 
-                    <button><%= estaCreando ? 'Crear' : 'Actualizar' %> comida</button>
+                    <button><%= estaCreando ? 'Crear' : 'Actualizar' %> ingrediente</button>
 
                 </form>
 
@@ -89,3 +90,9 @@
         </div>
     </div>
 </div>
+
+<script>
+  function replaceUrl(url){
+    return url.replace(/%20|\+/g, "-");;
+  }
+</script>

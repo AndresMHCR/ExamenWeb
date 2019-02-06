@@ -30,7 +30,7 @@ export class ComidaController {
     let clase = undefined;
     let comidas: ComidaEntity[];
 
-    if(idUsuario){  //acomodar esto
+   /* if(idUsuario){  //acomodar esto
       //response.send('ok');
 
       const consulta: FindManyOptions<ComidaEntity> = { //arreglar esto con respecto al usuario con nombre que liste comidas por usuario
@@ -42,9 +42,7 @@ export class ComidaController {
       };
       comidas = await this._comidaService.buscar(consulta);
       //response.send(ingredientes);
-    }else {
-      comidas = await this._comidaService.buscar();
-    }
+    }*/
     if (accion && nombre) {
       switch (accion) {
         case 'borrar':
@@ -56,6 +54,10 @@ export class ComidaController {
           mensaje = `Registro ${nombre} actualizado.`;
           clase = 'alert alert-info';
           break;
+        case 'crear':
+          mensaje = `Registro ${nombre} creado.`;
+          clase = 'alert alert-success';
+          break;
       }
     }
 
@@ -64,13 +66,15 @@ export class ComidaController {
       const consulta: FindManyOptions<ComidaEntity> = {
         where: [
           {
-            nombre: Like(`%${busqueda}%`)
+            nombrePlato: Like(`%${busqueda}%`)
           }
         ]
       };
 
       comidas = await this._comidaService.buscar(consulta);
 
+    }else {
+      comidas = await this._comidaService.buscar();
     }
 
 
@@ -85,6 +89,53 @@ export class ComidaController {
       }
     );
   }
+
+  @Get('crear-comida')
+  crearComidaRuta(
+    @Res() response
+  ) {
+    response.render(
+      'crear-comida',
+      {
+        titulo:'Agregar Comida'
+      }
+    )
+  }
+
+  @Post('crear-comida')
+  async crearComidaFuncion(
+    @Res() response,
+    @Body() comida: Comida
+  ) {
+/*
+    const objetoValidacionNoticia = new CreateNoticiaDto();
+
+    objetoValidacionNoticia.titulo = comida.titulo;
+    objetoValidacionNoticia.descripcion = comida.descripcion;
+
+    const errores: ValidationError[] =
+      await validate(objetoValidacionNoticia);
+
+    const hayErrores = errores.length>0;
+
+    if(hayErrores){
+      console.error(errores);
+      //redirect crear noticia, y
+      //en crear noticia deberian mostrar mensajes
+      //como en la pantalla de Inicio
+
+      throw new BadRequestException({mensaje:'Error de validacion'})
+    }else{*/
+      const respuesta = await this._comidaService.crear(comida);
+
+      const parametrosConsulta = `?accion=crear&nombre=${comida.nombrePlato}`;
+
+      response.redirect(
+        '/comida/inicio' + parametrosConsulta
+      )
+
+  }
+
 
   @Post('eliminar/:idComida')
   async eliminar(

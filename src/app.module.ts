@@ -11,6 +11,8 @@ import { ComidaEntity } from './comida/comida.entity';
 import { ComidaModule } from './comida/comida.module';
 import { IngredienteEntity } from './ingrediente/ingrediente.entity';
 import { IngredienteModule } from './ingrediente/ingrediente.module';
+import { EventoEntity } from './eventos/evento.entity';
+import { EventoModule } from './eventos/evento.module';
 
 @Module({
   imports: [
@@ -27,6 +29,7 @@ import { IngredienteModule } from './ingrediente/ingrediente.module';
         entities: [
           ComidaEntity,
           IngredienteEntity,
+          EventoEntity,
           UsuarioEntity,
           RolEntity,
           RolxusuarioEntity
@@ -35,6 +38,7 @@ import { IngredienteModule } from './ingrediente/ingrediente.module';
     ),
     ComidaModule,
     IngredienteModule,
+    EventoModule,
     UsuarioModule,
     RolModule
   ],
