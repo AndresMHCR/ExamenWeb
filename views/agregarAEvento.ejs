@@ -1,4 +1,4 @@
-<%- include('header',{titulo:"Editar"});%>
+<%- include('header',{titulo:"Editar Evento"});%>
 <div class ="container">
 
     <h1> Detalle evento <%= evento.nombreEvento %> </h1>
@@ -12,6 +12,15 @@
         <div class="col-sm-3">
             <strong>Longitud: </strong><%= evento.longitud %>
         </div>
+        <div class="col-sm-3">
+            <form action="/evento/registrar" method="GET">
+
+                <button class="btn btn-outline-secondary btn-block espaciado-boton"
+                        type="submit">
+                    Regresar
+                </button>
+            </form>
+        </div>
     </div>
     <div class="row">
     <div class="col-sm-6">
@@ -19,7 +28,8 @@
             <thead>
             <tr>
                 <!-- th -> table header -->
-                <th width="100%">Ingredientes Participantes</th>
+                <th width="80%">Ingredientes Participantes</th>
+                <th width="20%"></th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +37,15 @@
                 <tr>
                     <!-- td -> table detail -->
                     <td><%= ingrediente.nombreIngrediente %></td>
+                    <!--<td>
+                        <form action="/evento/editar/<%= evento.id %>?idIngrediente=<%= ingrediente.id%>" method="POST">
+
+                            <button class="btn btn-outline-danger btn-block espaciado-boton"
+                                    type="submit">
+                                Quitar
+                            </button>
+                        </form>
+                    </td>-->
                 </tr>
             <% }) %>
             </tbody>
