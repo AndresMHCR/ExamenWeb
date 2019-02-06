@@ -119,4 +119,63 @@ export class EventoController {
 
     response.redirect('/evento/inicio' + parametrosConsulta)
   }
+
+  @Get('registrar')
+  async mostrarRegistro(
+    @Res() response,
+    @Query('busqueda') busqueda: string,
+  ) {
+    let eventos: EventoEntity[];
+
+    if (busqueda) {
+
+      const consulta: FindManyOptions<EventoEntity> = {
+        where: [
+          {
+            nombreEvento: Like(`%${busqueda}%`)
+          }
+        ]
+      };
+
+      eventos = await this._eventoService.buscar(consulta);
+
+    } else {
+      eventos = await this._eventoService.buscar();
+    }
+    response.render('registro-evento',
+      {
+        arreglo: eventos
+      })
+  }
+
+  @Get('editar/:idEvento')
+  async editarEvento(
+    @Param('idEvento')idEvento: string,
+    @Res() response,
+    //@Session() session,
+  ) {
+    /*
+    let admin =undefined;
+    let usuario = undefined;
+    if(session.usuario){
+
+      if (session.usuario.esUsuario){
+        usuario = true
+      }
+      if(session.usuario.esAdministrador){
+        admin = true
+      }
+    }*/
+    const eventoEncontrado = await this._eventoService
+      .buscarPorId(+idEvento);
+    response.render(
+      'editar-evento',
+      {
+        //esUsuario:usuario,
+        //esAdministrador:admin,
+        //titulo:"Editar evento",
+        evento:eventoEncontrado,
+      })
+  }
+
 }
