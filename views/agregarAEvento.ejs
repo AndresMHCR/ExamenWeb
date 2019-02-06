@@ -37,15 +37,15 @@
                 <tr>
                     <!-- td -> table detail -->
                     <td><%= ingrediente.nombreIngrediente %></td>
-                    <!--<td>
-                        <form action="/evento/editar/<%= evento.id %>?idIngrediente=<%= ingrediente.id%>" method="POST">
+                    <td>
+                        <form action="/evento/quitar/<%= evento.id %>?idIngrediente=<%= ingrediente.id%>" method="POST">
 
                             <button class="btn btn-outline-danger btn-block espaciado-boton"
                                     type="submit">
                                 Quitar
                             </button>
                         </form>
-                    </td>-->
+                    </td>
                 </tr>
             <% }) %>
             </tbody>

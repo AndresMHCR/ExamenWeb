@@ -221,7 +221,30 @@ export class EventoController {
     response.redirect('/evento/editar' + parametrosConsulta)
   }
 
+  @Post('quitar/:idEvento')
+  async quitarIngredientePost(
+    @Res() response,
+    @Param('idEvento') idEvento: string,
+    @Query('idIngrediente') idIngrediente:IngredienteEntity
+  ) {
+    const evento = await this._eventoService
+      .buscarPorId(+idEvento);
 
+    const ingrediente = await this._ingredienteService
+      .buscarPorId(+idIngrediente)
+
+
+    const indexIngrediente = await evento.ingredientes.indexOf(idIngrediente);
+
+    evento.ingredientes.splice(indexIngrediente,1);
+
+    this._eventoService.actualizar(evento);
+
+    //response.send(evento);
+
+    const parametrosConsulta = `/${idEvento}`;
+    response.redirect('/evento/editar' + parametrosConsulta)
+  }
 
 
 
