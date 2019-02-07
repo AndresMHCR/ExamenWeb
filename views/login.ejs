@@ -1,0 +1,39 @@
+<%- include('header',{titulo:'INICIO'});%>
+
+
+<div class = "container">
+    <% const existeMensaje = typeof mensaje !== "undefined" %>
+
+    <% if(existeMensaje){ %>
+    <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+    </div>
+    <% } %>
+
+
+    <div class = "row">
+        <div  align="center" class="col-sm-12 centrar">
+            <h1>Login</h1>
+            <p>Ingresa tus credenciales</p>
+
+            <form action="/login"
+                  method = "post"
+            >
+                <div>
+                    <label for="correo">Correo</label>
+                    <input id="correo" type="email" name="correo">
+                </div>
+                <div>
+                    <label for="contrasenia">Password</label>
+                    <input id="contrasenia" type="password" name="contrasenia">
+                </div>
+                <button>Login</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>

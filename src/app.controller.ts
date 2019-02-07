@@ -29,6 +29,14 @@ export class AppController {
         arreglo: eventos
       })
   }
+  @Get('login')
+  getLogin(
+    @Res() response,
+    @Query('errores') errores:string
+  )
+  {
+    response.render('login',{titulo:'login',errores:errores})
+  }
 
   @Post('login')
   @HttpCode(200)
@@ -45,7 +53,7 @@ export class AppController {
     const usuario = await this._usuarioService
       .buscarPorId(respuesta)
 
-    if(respuesta !== undefined){
+    if(usuario !== undefined){
 
 
       sesion.usuario = {
@@ -68,11 +76,21 @@ export class AppController {
       } else if (sesion.usuario.esAdministrador){
         res.redirect('usuario/inicio')
       } else{
-        res.send('No tiene acceso')
+        const clase = 'alert alert-danger';
+        res.render('login',
+          {
+            mensaje: 'No tiene los accesos necesarios',
+            clase: clase
+          })
       }
 
     } else{
-      res.redirect('login.html');
+      const clase = 'alert alert-danger';
+      res.render('login',
+        {
+          mensaje: 'No existe ususario',
+          clase: clase
+      });
     }
   }
 
@@ -83,7 +101,19 @@ export class AppController {
   ){
     sesion.usuario = undefined,
     sesion.destroy()
-    res.redirect('login.html')
+    res.redirect('login')
+  }
+
+  @Get('registro')
+  async mostrarRegistro(
+    @Res() response,
+    @Session() sesion
+
+  ){
+    sesion.usuario = undefined
+    sesion.destroy()
+    response.render('registro')
+
   }
 
 
@@ -91,6 +121,7 @@ export class AppController {
 export interface Usuario {
   id?: number;
   nombre: string;
+  contrasenia:string,
   correo: string;
   fechaNacimiento: Date;
   roles: RolEntity[];

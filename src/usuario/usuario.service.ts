@@ -4,7 +4,8 @@ import {Injectable} from "@nestjs/common";
 import {UsuarioEntity} from "./usuario.entity";
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
-import { Usuario } from '../app.controller';
+import { Comida, Usuario } from '../app.controller';
+import { ComidaEntity } from '../comida/comida.entity';
 
 @Injectable()
 export class UsuarioService{
@@ -52,6 +53,12 @@ export class UsuarioService{
 
   buscarPorId(idUsuario: number): Promise<UsuarioEntity>{
     return this._usuarioRepository.findOne(idUsuario, {relations: ["roles"]} );
+  }
+  crear(usuario: Usuario): Promise<UsuarioEntity> {
+
+    const usuarioEntity: UsuarioEntity = this._usuarioRepository.create(usuario);
+
+    return this._usuarioRepository.save(usuarioEntity)
   }
 
 

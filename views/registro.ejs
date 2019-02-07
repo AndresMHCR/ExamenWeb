@@ -1,0 +1,41 @@
+<%- include('header',{titulo:'INICIO'});%>
+
+
+<div class = "container">
+    <% const existeMensaje = typeof mensaje !== "undefined" %>
+
+    <% if(existeMensaje){ %>
+        <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+            </div>
+    <% } %>
+
+
+    <div  class="row">
+        <div  class="col-sm-6 centrar">
+            <h1>Registro</h1>
+            <p>Ingresa tus Datos</p>
+            <form action="/usuario/crear" method="post">
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" name="nombre">
+                </div>
+                <div>
+                    <label for="contrasenia">Password</label>
+                    <input id="contrasenia" type="password" name="contrasenia">
+                </div>
+                <div>
+                    <label for="correo">Correo</label>
+                    <input id="correo" type="email" name="correo">
+                </div>
+                <div>
+                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                    <input id="fechaNacimiento" type="date" name="fechaNacimiento">
+                </div>
+                <button>Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>

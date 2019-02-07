@@ -152,7 +152,7 @@ export class UsuarioController {
     this._usuarioService.actualizar(usuario);
 
     const parametrosConsulta = `/${idUsuario}`;
-    response.redirect('/usuario/actualizar-usuario'+parametrosConsulta)
+    response.redirect('/usuario/actualizar-usuario'+parametrosConsulta);
   }
 
   @Post('quitar-rol/:idUsuario')
@@ -172,5 +172,20 @@ export class UsuarioController {
 
     const parametrosConsulta = `/${idUsuario}`;
     response.redirect('/usuario/actualizar-usuario' + parametrosConsulta)
+  }
+
+
+  @Post('crear')
+  async PostRegistrarse(
+    @Res() response,
+    @Body() usuario: Usuario,
+
+  ) {
+    //Buscar el Rol
+    const rol = await this._rolService.buscarPorId(1);
+    // Registrar usuario
+    usuario.roles = [];
+    const usuario_nuevo = await this._usuarioService.crear(usuario);
+    response.redirect('/login')
   }
 }

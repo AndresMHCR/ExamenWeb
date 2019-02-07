@@ -23,6 +23,6 @@ async function bootstrap() {
   app.set('view engine', 'ejs');
   app.use(express.static('public'));
 
-  await app.listen(2000);
+  await app.listen(8000);
 }
 bootstrap();
