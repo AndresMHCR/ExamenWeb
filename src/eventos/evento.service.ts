@@ -3,8 +3,9 @@
 import {Injectable} from "@nestjs/common";
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
-import { Evento, Ingrediente, Usuario } from '../app.controller';
+import { Comida, Evento, Ingrediente, Usuario } from '../app.controller';
 import { EventoEntity } from './evento.entity';
+import { ComidaEntity } from '../comida/comida.entity';
 
 @Injectable()
 export class EventoService{
@@ -34,6 +35,13 @@ export class EventoService{
 
   buscarPorId(idEvento: number): Promise<EventoEntity>{
     return this._eventoRepository.findOne(idEvento,{relations: ['ingredientes']});
+  }
+
+  crear(evento: Evento): Promise<EventoEntity> {
+
+    const eventoEntity: EventoEntity = this._eventoRepository.create(evento);
+
+    return this._eventoRepository.save(eventoEntity)
   }
 
 

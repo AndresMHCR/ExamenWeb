@@ -10,6 +10,7 @@ import { RolEntity } from './rol/rol.entity';
 import { UsuarioLoginDto } from './usuario/dto/usuario-login.dto';
 import { validate, ValidationError } from 'class-validator';
 import { UsuarioRegistroDto } from './usuario/dto/usuario-registro.dto';
+import { EventoEntity } from './eventos/evento.entity';
 
 @Controller()
 export class AppController {
@@ -20,18 +21,61 @@ export class AppController {
   }
 
   @Get('eventos')
-  async cargarEventos(
-    @Res() res,
-    @Query('busqueda') busqueda:string,
-    @Session() sesion
-  ){
+  async inicio(
+    @Res() response,
+    @Query('busqueda') busqueda: string,
+    @Query('accion') accion: string,
+    @Query('nombre') nombre: string
+  ) {
 
-    const eventos = await this._eventoService.buscar()
-    res.render('eventos',
+    let mensaje = undefined;
+    let clase = undefined;
+
+    if (accion && nombre) {
+      switch (accion) {
+        case 'borrar':
+          mensaje = `Registro ${nombre} eliminado.`;
+          clase = 'alert alert-danger';
+          break;
+
+        case 'actualizar':
+          mensaje = `Registro ${nombre} actualizado.`;
+          clase = 'alert alert-info';
+          break;
+      }
+    }
+
+    let eventos: EventoEntity[];
+
+    if (busqueda) {
+
+      const consulta: FindManyOptions<EventoEntity> = {
+        where: [
+          {
+            nombreEvento: Like(`%${busqueda}%`)
+          }
+        ]
+      };
+
+      eventos = await this._eventoService.buscar(consulta);
+
+    } else {
+      eventos = await this._eventoService.buscar();
+    }
+
+
+    response.render(
+      'eventos',
       {
-        arreglo: eventos
-      })
+        usuario: 'Adrian',
+        arreglo: eventos, // AQUI!
+        booleano: false,
+        mensaje: mensaje,
+        clase: clase
+      }
+    );
   }
+
   @Get('login')
   getLogin(
     @Res() response,

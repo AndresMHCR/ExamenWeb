@@ -3,14 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="fb574957-77b6-46c4-a666-a89951063e1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessions/K-1Gwonsfhhw7vjh00THp0-ROXExdabR.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessions/lQVfAKEMhOu_n38Ff6GDoozVAMdU0Uf2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessions/ltCjF65h_ylDoFbaN7ckdDFAsZDV7gZY.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessions/q0HgAwpfm6eFi-ZSJWqAb6c2zxXTfd2x.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sessions/w0XvH4w2SWKjaAl4XEikXJh2J7rEzpuV.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/2P5Zr_BzY3ROnKpFPA3Ja0yLNtlXWqLz.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/BleeNwox-cppK_q83XB_8kWNIbVtoW8N.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/CKChVGbJiCml4UrAoAqrD2WRnzJr4ofn.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/FrtjG3Y7srcfgwmalYg5ihM3_diVmBIS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/QxNYrDwUBY8fz6HiEKOo2k-FFQs47JkX.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/XgdeayocX9zTxe1vFiqwtAYTF9Z8dBAy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/YSleUDB-h5BffWZNqPa6ElrtF8nGTwq3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/Z9QNiLES6ZUtf8rW2zki1_b31KJBrDKp.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/eWSQL7-YRZB0cNF-kW8xq6uXapBP6tU4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/jCIUCJTZEd9zFYZoDG1T-XZU9um8u1Kn.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/kHtb38pa3hOpnKGad_M1xI8ykLGBqs1X.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usuario/usuario.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/usuario/usuario.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/rolesUsuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/rolesUsuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/comida/comida.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/comida/comida.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eventos/evento.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/eventos/evento.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eventos/evento.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/eventos/evento.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/eventos.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/eventos.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registro-evento.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registro-evento.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,25 +48,25 @@
         <counts>
           <entry key="crear-comida" value="1" />
           <entry key="css" value="4" />
-          <entry key="ejs" value="56" />
+          <entry key="ejs" value="63" />
           <entry key="html" value="8" />
           <entry key="js" value="11" />
           <entry key="json" value="11" />
           <entry key="rnc" value="1" />
-          <entry key="ts" value="152" />
+          <entry key="ts" value="159" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="EJS" value="56" />
+          <entry key="EJS" value="63" />
           <entry key="HTML" value="8" />
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="11" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
-          <entry key="TypeScript" value="153" />
+          <entry key="TypeScript" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -68,51 +78,42 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1" />
-          <entry key="ejs" value="3978" />
+          <entry key="ejs" value="4224" />
           <entry key="html" value="554" />
           <entry key="js" value="125" />
-          <entry key="ts" value="9585" />
+          <entry key="ts" value="10045" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="EJS" value="3978" />
+          <entry key="EJS" value="4224" />
           <entry key="HTML" value="554" />
           <entry key="JavaScript" value="125" />
-          <entry key="TypeScript" value="9585" />
+          <entry key="TypeScript" value="10045" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/usuario/usuario.controller.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/comida/comida.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="150" column="59" selection-start-line="150" selection-start-column="59" selection-end-line="150" selection-end-column="59" />
+            <state relative-caret-position="337">
+              <caret line="38" column="2" lean-forward="true" selection-start-line="38" selection-start-column="2" selection-end-line="43" selection-end-column="3" />
               <folding>
-                <element signature="e#1#111#0" expanded="true" />
+                <element signature="e#1#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/registro.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="39" />
+            <state relative-caret-position="-469">
+              <caret line="198" column="24" lean-forward="true" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="24" />
               <folding>
                 <element signature="e#1#100#0" expanded="true" />
               </folding>
@@ -121,19 +122,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/login.ejs">
+        <entry file="file://$PROJECT_DIR$/views/ingredientes.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/rolesUsuario.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="624">
+              <caret line="37" column="18" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="37" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -141,8 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/eventos/evento.controller.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
+            <state relative-caret-position="-157">
+              <caret line="184" column="4" lean-forward="true" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
               <folding>
                 <element signature="e#1#100#0" expanded="true" />
               </folding>
@@ -151,35 +143,64 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/usuario/dto/usuario-registro.dto.ts">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/comida/comida.controller.ts">
+        <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.entity.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1222">
-              <caret line="106" column="20" lean-forward="true" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
-              <folding>
-                <element signature="e#1#100#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="416">
+              <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="37" selection-end-column="26" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/usuario/dto/usuario-login.dto.ts">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.controller.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="133" column="24" selection-start-line="133" selection-start-column="24" selection-end-line="133" selection-end-column="24" />
+            <state relative-caret-position="-1040">
+              <caret line="54" column="47" lean-forward="true" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
               <folding>
                 <element signature="e#0#92#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/eventos.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/eventos/evento.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+              <folding>
+                <element signature="e#22#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/comida/comida.controller.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-365">
+              <caret line="160" column="4" selection-start-line="160" selection-start-column="4" selection-end-line="162" selection-end-column="5" />
+              <folding>
+                <element signature="e#1#100#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/comidas.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -202,23 +223,16 @@
         <option value="$PROJECT_DIR$/src/eventos/usuario.entity.ts" />
         <option value="$PROJECT_DIR$/src/eventos/usuario.service.ts" />
         <option value="$PROJECT_DIR$/public/eventos.html" />
-        <option value="$PROJECT_DIR$/src/eventos/evento.entity.ts" />
         <option value="$PROJECT_DIR$/src/ingrediente/ingrediente.entity.ts" />
-        <option value="$PROJECT_DIR$/views/eventos.ejs" />
         <option value="$PROJECT_DIR$/views/detalle-evento.ejs" />
         <option value="$PROJECT_DIR$/src/comida/comida.service.ts" />
         <option value="$PROJECT_DIR$/views/crear-comida.ejs" />
-        <option value="$PROJECT_DIR$/src/comida/comida.controller.ts" />
         <option value="$PROJECT_DIR$/src/ingrediente/ingrediente.service.ts" />
         <option value="$PROJECT_DIR$/views/crear-ingrediente.ejs" />
-        <option value="$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts" />
         <option value="$PROJECT_DIR$/views/ingredientes.ejs" />
-        <option value="$PROJECT_DIR$/views/registro-evento.ejs" />
         <option value="$PROJECT_DIR$/src/eventos/evento.module.ts" />
-        <option value="$PROJECT_DIR$/src/eventos/evento.service.ts" />
         <option value="$PROJECT_DIR$/views/editar-evento.ejs" />
         <option value="$PROJECT_DIR$/views/agregarAEvento.ejs" />
-        <option value="$PROJECT_DIR$/src/eventos/evento.controller.ts" />
         <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/src/comida/comida.entity.ts" />
         <option value="$PROJECT_DIR$/src/rol/rol.entity.ts" />
@@ -234,9 +248,17 @@
         <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/views/registro.ejs" />
         <option value="$PROJECT_DIR$/src/usuario/dto/usuario-registro.dto.ts" />
-        <option value="$PROJECT_DIR$/src/app.controller.ts" />
-        <option value="$PROJECT_DIR$/views/rolesUsuario.ejs" />
         <option value="$PROJECT_DIR$/src/usuario/usuario.controller.ts" />
+        <option value="$PROJECT_DIR$/views/rolesUsuario.ejs" />
+        <option value="$PROJECT_DIR$/views/registro-evento.ejs" />
+        <option value="$PROJECT_DIR$/src/eventos/evento.entity.ts" />
+        <option value="$PROJECT_DIR$/views/crear-evento.ejs" />
+        <option value="$PROJECT_DIR$/src/eventos/evento.service.ts" />
+        <option value="$PROJECT_DIR$/views/eventos.ejs" />
+        <option value="$PROJECT_DIR$/src/app.controller.ts" />
+        <option value="$PROJECT_DIR$/src/comida/comida.controller.ts" />
+        <option value="$PROJECT_DIR$/src/eventos/evento.controller.ts" />
+        <option value="$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts" />
       </list>
     </option>
   </component>
@@ -257,9 +279,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1432" />
-    <option name="height" value="1047" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -326,13 +349,6 @@
             <path>
               <item name="ExamenWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="ExamenWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="usuario" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExamenWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamenWeb" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -393,12 +409,12 @@
       <workItem from="1549122379682" duration="18685000" />
       <workItem from="1549290478375" duration="19392000" />
       <workItem from="1549409100277" duration="51467000" />
-      <workItem from="1549528684166" duration="8314000" />
+      <workItem from="1549528684166" duration="12419000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111752000" />
+    <option name="totallyTimeSpent" value="115857000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -461,58 +477,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/detalle-evento.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="45" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ejs/lib/ejs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="692" column="18" selection-start-line="692" selection-start-column="18" selection-end-line="692" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/registro-evento.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/editar-evento.ejs" />
-    <entry file="file://$PROJECT_DIR$/tslint.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.service.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/eventoPorIngrediente/eventoPorIngrediente.controller.ts" />
     <entry file="file://$PROJECT_DIR$/src/eventoPorIngrediente/eventoPorIngrediente.modulle.ts" />
     <entry file="file://$PROJECT_DIR$/src/eventoPorIngrediente/eventoPorIngrediente.service.ts" />
-    <entry file="file://$PROJECT_DIR$/src/eventos/evento.entity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-          <folding>
-            <element signature="e#21#120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/comida/comida.entity.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-462">
           <caret line="2" column="87" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.entity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="37" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -549,13 +523,6 @@
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/eventos.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -600,31 +567,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/eventos/evento.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
-          <folding>
-            <element signature="e#22#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/login.html" />
     <entry file="file://$PROJECT_DIR$/node_modules/@nestjs/core/node_modules/express/lib/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
           <caret line="283" column="6" selection-start-line="283" selection-start-column="6" selection-end-line="283" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/comida/comida.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
-          <folding>
-            <element signature="e#1#43#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -691,33 +638,6 @@
     <entry file="file://$PROJECT_DIR$/sessions/KNhfPKPAK5Cg04HEqEgGOIAGrnChz3xR.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/comidas.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="39" />
-          <folding>
-            <element signature="e#1#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/eventos/evento.controller.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
-          <folding>
-            <element signature="e#1#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/usuario/dto/usuario-login.dto.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -735,49 +655,151 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/usuario/dto/usuario-registro.dto.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/rolesUsuario.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/usuario/usuario.controller.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1221">
+          <caret line="150" column="59" selection-start-line="150" selection-start-column="59" selection-end-line="150" selection-end-column="59" />
+          <folding>
+            <element signature="e#1#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/detalle-evento.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="45" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/crear-comida.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/registro.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="40" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/registro-evento.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/eventos/evento.entity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding>
+            <element signature="e#21#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/crear-evento.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comida/comida.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="38" column="2" lean-forward="true" selection-start-line="38" selection-start-column="2" selection-end-line="43" selection-end-column="3" />
+          <folding>
+            <element signature="e#1#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/eventos/evento.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+          <folding>
+            <element signature="e#22#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/comidas.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/ingredientes.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="37" column="18" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="37" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/eventos.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="133" column="24" selection-start-line="133" selection-start-column="24" selection-end-line="133" selection-end-column="24" />
+        <state relative-caret-position="-1040">
+          <caret line="54" column="47" lean-forward="true" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
           <folding>
             <element signature="e#0#92#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/registro.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/usuario/dto/usuario-registro.dto.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/rolesUsuario.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/comida/comida.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1222">
-          <caret line="106" column="20" lean-forward="true" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
+        <state relative-caret-position="-365">
+          <caret line="160" column="4" selection-start-line="160" selection-start-column="4" selection-end-line="162" selection-end-column="5" />
           <folding>
             <element signature="e#1#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/usuario/usuario.controller.ts">
+    <entry file="file://$PROJECT_DIR$/src/eventos/evento.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="150" column="59" selection-start-line="150" selection-start-column="59" selection-end-line="150" selection-end-column="59" />
+        <state relative-caret-position="-157">
+          <caret line="184" column="4" lean-forward="true" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
           <folding>
-            <element signature="e#1#111#0" expanded="true" />
+            <element signature="e#1#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.entity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="37" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ingrediente/ingrediente.controller.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-469">
+          <caret line="198" column="24" lean-forward="true" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="24" />
+          <folding>
+            <element signature="e#1#100#0" expanded="true" />
           </folding>
         </state>
       </provider>

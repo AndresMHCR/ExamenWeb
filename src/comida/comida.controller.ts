@@ -1,5 +1,5 @@
 
-import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, Post, Query, Res, Session } from '@nestjs/common';
 import { Comida, Usuario } from '../app.controller';
 
 import { FindManyOptions, FindOneOptions, Like } from 'typeorm';
@@ -12,7 +12,6 @@ import { UsuarioService } from '../usuario/usuario.service';
 
 @Controller('comida')
 export class ComidaController {
-
   constructor(private readonly _comidaService: ComidaService) {
 
   }
@@ -23,26 +22,18 @@ export class ComidaController {
     @Query('idUsuario') idUsuario: string,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
-    @Query('nombre') nombre: string
+    @Query('nombre') nombre: string,
+    @Session() sesion
   ) {
 
     let mensaje = undefined;
     let clase = undefined;
     let comidas: ComidaEntity[];
 
-   /* if(idUsuario){  //acomodar esto
-      //response.send('ok');
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
 
-      const consulta: FindManyOptions<ComidaEntity> = { //arreglar esto con respecto al usuario con nombre que liste comidas por usuario
-        where: [
-          {
-            usuario: Like(`%${idUsuario}%`)
-          }
-        ]
-      };
-      comidas = await this._comidaService.buscar(consulta);
-      //response.send(ingredientes);
-    }*/
     if (accion && nombre) {
       switch (accion) {
         case 'borrar':
@@ -92,8 +83,13 @@ export class ComidaController {
 
   @Get('crear-comida')
   crearComidaRuta(
-    @Res() response
+    @Res() response,
+    @Session() sesion
   ) {
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
+
     response.render(
       'crear-comida',
       {
@@ -160,7 +156,11 @@ export class ComidaController {
   async actualizarComidaVista(
     @Res() response,
     @Param('idComida') idComida: string,
+    @Session() sesion
   ) {
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
     // El "+" le transforma en numero a un string
     // numerico
     const comidaEncontrada = await this._comidaService

@@ -1,5 +1,5 @@
 
-import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, Post, Query, Res, Session } from '@nestjs/common';
 import {Usuario} from "../app.controller";
 
 import {FindManyOptions, Like} from "typeorm";
@@ -19,61 +19,6 @@ export class EventoController {
 
   }
 
-  @Get('inicio')
-  async inicio(
-    @Res() response,
-    @Query('busqueda') busqueda: string,
-    @Query('accion') accion: string,
-    @Query('nombre') nombre: string
-  ) {
-
-    let mensaje = undefined;
-    let clase = undefined;
-
-    if (accion && nombre) {
-      switch (accion) {
-        case 'borrar':
-          mensaje = `Registro ${nombre} eliminado.`;
-          clase = 'alert alert-danger';
-          break;
-
-        case 'actualizar':
-          mensaje = `Registro ${nombre} actualizado.`;
-          clase = 'alert alert-info';
-          break;
-      }
-    }
-
-    let eventos: EventoEntity[];
-
-    if (busqueda) {
-
-      const consulta: FindManyOptions<EventoEntity> = {
-        where: [
-            {
-              nombre: Like(`%${busqueda}%`)
-            }
-        ]
-      };
-
-      eventos = await this._eventoService.buscar(consulta);
-
-    } else {
-      eventos = await this._eventoService.buscar();
-    }
-
-
-    response.render(
-      'eventos',
-      {
-        usuario: 'Adrian',
-        arreglo: eventos, // AQUI!
-        booleano: false,
-        mensaje: mensaje,
-        clase: clase
-      }
-    );
-  }
 
   @Get('detalle/:idEvento')
   async verEvento(
@@ -127,7 +72,12 @@ export class EventoController {
   async mostrarRegistro(
     @Res() response,
     @Query('busqueda') busqueda: string,
+    @Session() sesion
   ) {
+
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
     let eventos: EventoEntity[];
 
     if (busqueda) {
@@ -150,35 +100,16 @@ export class EventoController {
         arreglo: eventos
       })
   }
-    /*
-    let admin =undefined;
-    let usuario = undefined;
-    if(session.usuario){
-
-      if (session.usuario.esUsuario){
-        usuario = true
-      }
-      if(session.usuario.esAdministrador){
-        admin = true
-      }
-    }
-    const eventoEncontrado = await this._eventoService
-      .buscarPorId(+idEvento);
-    response.render(
-      'editar-evento',
-      {
-        //esUsuario:usuario,
-        //esAdministrador:admin,
-        //titulo:"Editar evento",
-        evento:eventoEncontrado,
-      })
-  }*/
 
   @Get('editar/:idEvento')
   async agregarIngrediente(
     @Res() response,
-    @Param('idEvento') idEvento: string
+    @Param('idEvento') idEvento: string,
+    @Session() sesion
   ){
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
 
     let ingredientes: IngredienteEntity[];
     ingredientes = await this._ingredienteService.buscar();
@@ -244,6 +175,34 @@ export class EventoController {
 
     const parametrosConsulta = `/${idEvento}`;
     response.redirect('/evento/editar' + parametrosConsulta)
+  }
+
+  @Get('crear-evento')
+  async crearEventoGet(
+    @Res() response,
+    @Session() sesion
+
+  ){
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
+    response.render('crear-evento')
+  }
+
+  @Post('crear-evento')
+  async crearEventoPost(
+    @Res() response,
+    @Body() evento: EventoEntity
+
+  ){
+    const respuesta = await this._eventoService.crear(evento);
+
+    const parametrosConsulta = `?accion=crear&nombre=${evento.nombreEvento}`;
+
+    response.redirect(
+      '/evento/registrar' + parametrosConsulta
+    )
+
   }
 
 
