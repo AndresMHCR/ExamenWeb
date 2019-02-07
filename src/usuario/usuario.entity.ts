@@ -1,9 +1,9 @@
 //usuario.entity.ts
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { RolxusuarioEntity } from '../RolPorUsuario/rolxusuario.entity';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 import { ComidaEntity } from '../comida/comida.entity';
+import { RolEntity } from '../rol/rol.entity';
 
 @Entity('usuario')
 export class UsuarioEntity{
@@ -15,14 +15,14 @@ export class UsuarioEntity{
   nombre:string;
 
   @Column()
-  contraseña:string;
+  contrasenia:string;
 
   @Column()
   correo:string;
 
   @Column({
     name: 'fecha_nacimiento',
-    type: "date"
+    type: 'date'
   })
   fechaNacimiento: Date;
 
@@ -32,12 +32,7 @@ export class UsuarioEntity{
   )
   comidas: ComidaEntity[];
 
-
-  @OneToMany(
-    type => RolxusuarioEntity,  // Que tabla vamos a relacionar
-    rolxusuario => rolxusuario.usuario  // Campo que hace referencia FK
-  )
-  rolesxusuario: RolxusuarioEntity[];
-
-
+  @ManyToMany(type => RolEntity)
+  @JoinTable()
+  roles: RolEntity[];
 }

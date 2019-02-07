@@ -1,5 +1,5 @@
 
-import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, Post, Query, Res, Session } from '@nestjs/common';
 import {Usuario} from "../app.controller";
 
 import {FindManyOptions, Like} from "typeorm";
@@ -20,7 +20,8 @@ export class UsuarioController {
     @Res() response,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
-    @Query('nombre') nombre: string
+    @Query('nombre') nombre: string,
+    @Session() sesion
   ) {
 
     let mensaje = undefined;

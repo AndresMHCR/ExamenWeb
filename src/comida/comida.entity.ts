@@ -1,7 +1,6 @@
 //usuario.entity.ts
 
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { RolxusuarioEntity } from '../RolPorUsuario/rolxusuario.entity';
 import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 import { UsuarioEntity } from '../usuario/usuario.entity';
 
@@ -12,7 +11,7 @@ export class ComidaEntity{
   id: number;
 
   @Column()
-  nombrePlato:string;
+  nombrePlato: string;
 
   @Column()
   descripcionPlato: string;

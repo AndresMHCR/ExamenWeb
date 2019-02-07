@@ -2,10 +2,11 @@ import { Body, Controller, Get, HttpCode, Post, Query, Res, Session } from '@nes
 import { AppService } from './app.service';
 import {UsuarioService} from "./usuario/usuario.service";
 import { UsuarioEntity } from './usuario/usuario.entity';
-import { FindManyOptions, Like } from 'typeorm';
+import { FindManyOptions, FindOneOptions, Like } from 'typeorm';
 import { IngredienteEntity } from './ingrediente/ingrediente.entity';
 import { EventoService } from './eventos/evento.service';
 import { ComidaEntity } from './comida/comida.entity';
+import { RolEntity } from './rol/rol.entity';
 
 @Controller()
 export class AppController {
@@ -18,8 +19,10 @@ export class AppController {
   @Get('eventos')
   async cargarEventos(
     @Res() res,
-    @Query('busqueda') busqueda:string
+    @Query('busqueda') busqueda:string,
+    @Session() sesion
   ){
+
     const eventos = await this._eventoService.buscar()
     res.render('eventos',
       {
@@ -30,25 +33,57 @@ export class AppController {
   @Post('login')
   @HttpCode(200)
   async ejecutarLogin(
-    @Body('username') username:string,
-    @Body('password') password:string,
-
+    @Body('correo') correo:string,
+    @Body('contrasenia') contrasenia:string,
+    @Session() sesion,
     @Res() res
   ){
+
     const respuesta = await this._usuarioService
-      .autenticar(username, password);
+      .autenticar(correo, contrasenia);
 
-    const idUsuario = await this._usuarioService
-      .buscar()
+    const usuario = await this._usuarioService
+      .buscarPorId(respuesta)
+
+    if(respuesta !== undefined){
 
 
-    if(respuesta){
-      //res.send('ok');
-      const parametroConsulta = `?idUsuario=${username}`
+      sesion.usuario = {
+
+        id: usuario.id,
+        nombre: usuario.nombre,
+        correo: usuario.correo,
+        esUsuario: usuario.roles.some((rol) => {
+          return rol.nombre === 'usuario';
+        }),
+        esAdministrador: usuario.roles.some((rol) => {
+          return rol.nombre === 'administrador';
+        })
+
+      };
+      //res.send(sesion)
+      if(sesion.usuario.esUsuario){
+      const parametroConsulta = `?idUsuario=${usuario.id}`
       res.redirect('comida/inicio')
-    }else{
+      } else if (sesion.usuario.esAdministrador){
+        res.redirect('usuario/inicio')
+      } else{
+        res.send('No tiene acceso')
+      }
+
+    } else{
       res.redirect('login.html');
     }
+  }
+
+  @Get('logout')
+  async logout(
+    @Res() res,
+    @Session() sesion
+  ){
+    sesion.usuario = undefined,
+    sesion.destroy()
+    res.redirect('login.html')
   }
 
 
@@ -58,6 +93,7 @@ export interface Usuario {
   nombre: string;
   correo: string;
   fecha_nacimiento: Date;
+  roles: RolEntity[];
 }
 
 export interface Comida {
@@ -86,5 +122,5 @@ export interface Evento {
   fechaEvento: Date;
   latitud: string;
   longitud: string;
-  ingredientes:IngredienteEntity[];
+  ingredientes :IngredienteEntity[];
 }

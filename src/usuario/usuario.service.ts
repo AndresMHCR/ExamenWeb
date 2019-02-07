@@ -8,36 +8,27 @@ import { Usuario } from '../app.controller';
 
 @Injectable()
 export class UsuarioService{
-  arreglo: Usuario [] = [
-    {
-      nombre: 'andres',
-      correo: 'asadadas',
-      fecha_nacimiento: 'asdasdasda'
-    },
-    {
-      nombre: 'luis',
-      correo: 'asadadas',
-      fecha_nacimiento: 'asdasdasda'
-    }
-  ];
   constructor(
     @InjectRepository(UsuarioEntity)
     private readonly _usuarioRepository: Repository<UsuarioEntity>
   ){}
 
-  async autenticar(username: string,
-                   password: string ):Promise<boolean>{
-    const consulta: FindOneOptions<UsuarioEntity> = {
-      where:{
-        username: username,
-        password: password
+  async autenticar(correo: string,
+                   password: string ): Promise<number>{
+    const usuarioEncontrado = await this._usuarioRepository
+      .findOne({
+        where: {
+            correo: correo
+        }
+      });
+    if (usuarioEncontrado){
+      if (usuarioEncontrado.contrasenia === password){
+        return usuarioEncontrado.id
+      } else {
+        return 0;
       }
-    };
-    const respuesta = await this._usuarioRepository.findOne(consulta);
-    if(respuesta){
-      return true;
-    }else {
-      return false;
+    } else {
+      return 0;
     }
   }
 
@@ -56,10 +47,12 @@ export class UsuarioService{
 
   actualizar(usuario: Usuario): Promise<UsuarioEntity> {
     const usuarioEntity: UsuarioEntity = this._usuarioRepository.create(usuario);
-    return this._usuarioRepository.save(usuarioEntity)
+    return this._usuarioRepository.save(usuarioEntity);
   }
 
-  buscarPorId(idNoticia: number): Promise<UsuarioEntity>{
-    return this._usuarioRepository.findOne(idNoticia);
+  buscarPorId(idUsuario: number): Promise<UsuarioEntity>{
+    return this._usuarioRepository.findOne(idUsuario, {relations: ["roles"]} );
   }
+
+
 }
