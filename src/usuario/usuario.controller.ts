@@ -10,6 +10,8 @@ import { UsuarioEntity } from './usuario.entity';
 import { RolEntity } from '../rol/rol.entity';
 import { RolService } from '../rol/rol.service';
 import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
+import { UsuarioLoginDto } from './dto/usuario-login.dto';
+import { UsuarioRegistroDto } from './dto/usuario-registro.dto';
 
 @Controller('usuario')
 export class UsuarioController {
@@ -30,6 +32,7 @@ export class UsuarioController {
 
     let mensaje = undefined;
     let clase = undefined;
+
 
     if (accion && nombre) {
       switch (accion) {
@@ -99,6 +102,7 @@ export class UsuarioController {
   async actualizarUsuarioVista(
     @Res() response,
     @Param('idUsuario') idUsuario: string,
+    @Query('errorRol') errorRol:string
   ) {
     // El "+" le transforma en numero a un string
     // numerico
@@ -108,24 +112,45 @@ export class UsuarioController {
     let roles: RolEntity[]
 
     roles = await this._rolService.buscar();
-    response
-      .render(
-        'rolesUsuario',
-        {
-          usuario: usuarioEncontrado,
-          roles: roles
-        }
-      )
+    if(errorRol){
+      const clase = 'alert alert-danger';
+      response
+        .render(
+          'rolesUsuario',
+          {
+            usuario: usuarioEncontrado,
+            roles: roles,
+            clase: clase,
+            mensaje: 'Este usuario ya tiene rol'
+          }
+        )
+    }else {
+      response
+        .render(
+          'rolesUsuario',
+          {
+            usuario: usuarioEncontrado,
+            roles: roles
+          }
+        )
 
-
+    }
   }
 
   @Post('actualizar-usuario/:idUsuario')
   async actualizarNoticiaMetedo(
     @Res() response,
     @Param('idUsuario') idUsuario: string,
-    @Body() usuario: Usuario
+    @Body() usuario: Usuario,
+    @Query('errorRol') errorRol:string
   ) {
+
+    if(errorRol)
+    {
+      const parametros = `/${idUsuario}?errorRol=true`;
+      response.redirect('/actualizar-usuario' + parametros);
+    }
+
     usuario.id = +idUsuario;
     await this._usuarioService.actualizar(usuario);
 
@@ -134,6 +159,7 @@ export class UsuarioController {
     response.redirect('/usuario/inicio' + parametrosConsulta);
 
   }
+
   @Post('agregar-rol/:idUsuario')
   async agregarRolMetodo(
     @Res() response,
@@ -147,12 +173,25 @@ export class UsuarioController {
     const rolAAgregar = await this._rolService
       .buscarPorId(+idRol)
 
-    usuario.roles.push(rolAAgregar);
+    const existeRol = usuario.roles.some(
+      (rol) => {
+        return rol.id === rolAAgregar.id
+      }
+    );
+    if(existeRol){
+      const clase = 'alert alert-danger';
+      const parametrosConsulta = `/${idUsuario}?errorRol=true`;
+      response.redirect('/usuario/actualizar-usuario' + parametrosConsulta );
+    } else{
+      usuario.roles.push(rolAAgregar);
 
-    this._usuarioService.actualizar(usuario);
+      this._usuarioService.actualizar(usuario);
 
-    const parametrosConsulta = `/${idUsuario}`;
-    response.redirect('/usuario/actualizar-usuario'+parametrosConsulta);
+      const parametrosConsulta = `/${idUsuario}`;
+      response.redirect('/usuario/actualizar-usuario'+parametrosConsulta);
+    }
+
+
   }
 
   @Post('quitar-rol/:idUsuario')
@@ -181,11 +220,24 @@ export class UsuarioController {
     @Body() usuario: Usuario,
 
   ) {
-    //Buscar el Rol
-    const rol = await this._rolService.buscarPorId(1);
-    // Registrar usuario
-    usuario.roles = [];
-    const usuario_nuevo = await this._usuarioService.crear(usuario);
-    response.redirect('/login')
+
+    const usuarioValidado = new UsuarioRegistroDto();
+
+    usuarioValidado.nombre = usuario.nombre;
+    usuarioValidado.correo = usuario.correo;
+    usuarioValidado.password = usuario.contrasenia;
+    const errores: ValidationError[] = await validate(usuarioValidado);
+
+    const hayErrores = errores.length > 0;
+
+    if(hayErrores){
+      response.redirect('/registro?errores=Hayerrores')
+    } else {
+      //const rol = await this._rolService.buscarPorId(1);
+
+      usuario.roles = [];
+      const usuario_nuevo = await this._usuarioService.crear(usuario);
+      response.redirect('/login');
+    }
   }
 }

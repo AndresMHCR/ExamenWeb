@@ -7,6 +7,9 @@ import { IngredienteEntity } from './ingrediente/ingrediente.entity';
 import { EventoService } from './eventos/evento.service';
 import { ComidaEntity } from './comida/comida.entity';
 import { RolEntity } from './rol/rol.entity';
+import { UsuarioLoginDto } from './usuario/dto/usuario-login.dto';
+import { validate, ValidationError } from 'class-validator';
+import { UsuarioRegistroDto } from './usuario/dto/usuario-registro.dto';
 
 @Controller()
 export class AppController {
@@ -35,7 +38,16 @@ export class AppController {
     @Query('errores') errores:string
   )
   {
-    response.render('login',{titulo:'login',errores:errores})
+    if(errores) {
+      const clase = 'alert alert-danger';
+      response.render('login',
+        {
+          mensaje: "Errores de validacion",
+          clase: clase
+        })
+    }else {
+      response.render('login');
+    }
   }
 
   @Post('login')
@@ -47,50 +59,61 @@ export class AppController {
     @Res() res
   ){
 
-    const respuesta = await this._usuarioService
-      .autenticar(correo, contrasenia);
+    const usuarioValidado = new UsuarioLoginDto();
+    usuarioValidado.correo = correo;
+    usuarioValidado.password = contrasenia;
+    const errores: ValidationError[] = await validate(usuarioValidado);
 
-    const usuario = await this._usuarioService
-      .buscarPorId(respuesta)
+    const hayErrores = errores.length > 0;
+    if(hayErrores){
+      res.redirect('/login?errores=Hayerrores');
 
-    if(usuario !== undefined){
+    }else {
+      const respuesta = await this._usuarioService
+        .autenticar(correo, contrasenia);
+
+      const usuario = await this._usuarioService
+        .buscarPorId(respuesta)
+
+      if (usuario !== undefined) {
 
 
-      sesion.usuario = {
+        sesion.usuario = {
 
-        id: usuario.id,
-        nombre: usuario.nombre,
-        correo: usuario.correo,
-        esUsuario: usuario.roles.some((rol) => {
-          return rol.nombre === 'usuario';
-        }),
-        esAdministrador: usuario.roles.some((rol) => {
-          return rol.nombre === 'administrador';
-        })
+          id: usuario.id,
+          nombre: usuario.nombre,
+          correo: usuario.correo,
+          esUsuario: usuario.roles.some((rol) => {
+            return rol.nombre === 'usuario';
+          }),
+          esAdministrador: usuario.roles.some((rol) => {
+            return rol.nombre === 'administrador';
+          })
 
-      };
-      //res.send(sesion)
-      if(sesion.usuario.esUsuario){
-      const parametroConsulta = `?idUsuario=${usuario.id}`
-      res.redirect('comida/inicio')
-      } else if (sesion.usuario.esAdministrador){
-        res.redirect('usuario/inicio')
-      } else{
+        };
+        //res.send(sesion)
+        if (sesion.usuario.esUsuario) {
+          const parametroConsulta = `?idUsuario=${usuario.id}`
+          res.redirect('comida/inicio')
+        } else if (sesion.usuario.esAdministrador) {
+          res.redirect('usuario/inicio')
+        } else {
+          const clase = 'alert alert-danger';
+          res.render('login',
+            {
+              mensaje: 'No tiene los accesos necesarios',
+              clase: clase
+            })
+        }
+
+      } else {
         const clase = 'alert alert-danger';
         res.render('login',
           {
-            mensaje: 'No tiene los accesos necesarios',
+            mensaje: 'No existe ususario',
             clase: clase
-          })
+          });
       }
-
-    } else{
-      const clase = 'alert alert-danger';
-      res.render('login',
-        {
-          mensaje: 'No existe ususario',
-          clase: clase
-      });
     }
   }
 
@@ -107,12 +130,23 @@ export class AppController {
   @Get('registro')
   async mostrarRegistro(
     @Res() response,
-    @Session() sesion
+    @Session() sesion,
+    @Query('errores') errores:string
 
   ){
-    sesion.usuario = undefined
-    sesion.destroy()
-    response.render('registro')
+    if(errores) {
+      const clase = 'alert alert-danger';
+      response.render('registro',
+        {
+          mensaje: "Errores de validacion",
+          clase: clase
+        })
+    }else {
+      sesion.usuario = undefined
+      sesion.destroy()
+      response.render('registro');
+    }
+
 
   }
 
