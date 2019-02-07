@@ -1,8 +1,8 @@
 //usuario.entity.ts
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { RolxusuarioEntity } from '../RolPorUsuario/rolxusuario.entity';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 @Entity('comida')
 export class ComidaEntity{
@@ -11,7 +11,7 @@ export class ComidaEntity{
   id: number;
 
   @Column()
-  nombrePlato:string;
+  nombrePlato: string;
 
   @Column()
   descripcionPlato: string;
@@ -31,4 +31,10 @@ export class ComidaEntity{
     ingrediente => ingrediente.comida // Campo que hace referencia FK
   )
   ingredientes: IngredienteEntity[];
+
+  @ManyToOne(
+    type => UsuarioEntity,  // Tipo tabla
+    usuario => usuario.comidas
+  )
+  usuario: UsuarioEntity;
 }

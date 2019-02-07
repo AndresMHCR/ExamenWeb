@@ -12,27 +12,47 @@
 
 <div class ="container">
 
+    <form method="get" action="/ingrediente/inicio">
+        <div class="row">
+            <div class="col-sm-9">
 
+                <div class="form-group row">
+                    <label for="busqueda">Busqueda</label>
+
+                    <input id="busqueda"
+                           type="text"
+                           name="busqueda"
+                           class="form-control">
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+
+                <button
+                        class="btn btn-outline-success btn-block ">
+
+                    Buscar
+
+                </button>
+
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-sm-9">
 
-            <div class="form-group row">
-                <label for="busqueda" class="col-sm-2 col-form-label">Buscar</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="busqueda" placeholder="Buscar">
-                </div>
-            </div>
-
         </div>
         <div class="col-sm-3">
+            <a href="/ingrediente/crear-ingrediente?idComida=<%=idreferencia%>"
+               class="quitar-link">
 
-            <button
-                    class="btn btn-outline-success btn-block ">
+                <button class="btn btn-outline-success btn-block">
 
-                Buscar
+                    Agregar Ingrediente
 
-            </button>
 
+                </button>
+            </a>
         </div>
     </div>
 
@@ -83,8 +103,17 @@
         <% }) %>
         </tbody>
 
-
     </table>
+
+    <div>
+        <a href="/comida/inicio"
+           class="quitar-link">
+            <button
+                    class="btn btn-outline-info ">
+                regresar
+            </button>
+        </a>
+    </div>
 
 
 

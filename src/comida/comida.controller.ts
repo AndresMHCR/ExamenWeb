@@ -2,10 +2,13 @@
 import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
 import { Comida, Usuario } from '../app.controller';
 
-import {FindManyOptions, Like} from "typeorm";
+import { FindManyOptions, FindOneOptions, Like } from 'typeorm';
 import {validate, ValidationError} from "class-validator";
 import { ComidaService } from './comida.service';
 import { ComidaEntity } from './comida.entity';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Controller('comida')
 export class ComidaController {
@@ -17,6 +20,7 @@ export class ComidaController {
   @Get('inicio')
   async inicio(
     @Res() response,
+    @Query('idUsuario') idUsuario: string,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
     @Query('nombre') nombre: string
@@ -24,7 +28,21 @@ export class ComidaController {
 
     let mensaje = undefined;
     let clase = undefined;
+    let comidas: ComidaEntity[];
 
+   /* if(idUsuario){  //acomodar esto
+      //response.send('ok');
+
+      const consulta: FindManyOptions<ComidaEntity> = { //arreglar esto con respecto al usuario con nombre que liste comidas por usuario
+        where: [
+          {
+            usuario: Like(`%${idUsuario}%`)
+          }
+        ]
+      };
+      comidas = await this._comidaService.buscar(consulta);
+      //response.send(ingredientes);
+    }*/
     if (accion && nombre) {
       switch (accion) {
         case 'borrar':
@@ -36,24 +54,26 @@ export class ComidaController {
           mensaje = `Registro ${nombre} actualizado.`;
           clase = 'alert alert-info';
           break;
+        case 'crear':
+          mensaje = `Registro ${nombre} creado.`;
+          clase = 'alert alert-success';
+          break;
       }
     }
-
-    let comidas: ComidaEntity[];
 
     if (busqueda) {
 
       const consulta: FindManyOptions<ComidaEntity> = {
         where: [
           {
-            nombre: Like(`%${busqueda}%`)
+            nombrePlato: Like(`%${busqueda}%`)
           }
         ]
       };
 
       comidas = await this._comidaService.buscar(consulta);
 
-    } else {
+    }else {
       comidas = await this._comidaService.buscar();
     }
 
@@ -69,6 +89,53 @@ export class ComidaController {
       }
     );
   }
+
+  @Get('crear-comida')
+  crearComidaRuta(
+    @Res() response
+  ) {
+    response.render(
+      'crear-comida',
+      {
+        titulo:'Agregar Comida'
+      }
+    )
+  }
+
+  @Post('crear-comida')
+  async crearComidaFuncion(
+    @Res() response,
+    @Body() comida: Comida
+  ) {
+/*
+    const objetoValidacionNoticia = new CreateNoticiaDto();
+
+    objetoValidacionNoticia.titulo = comida.titulo;
+    objetoValidacionNoticia.descripcion = comida.descripcion;
+
+    const errores: ValidationError[] =
+      await validate(objetoValidacionNoticia);
+
+    const hayErrores = errores.length>0;
+
+    if(hayErrores){
+      console.error(errores);
+      //redirect crear noticia, y
+      //en crear noticia deberian mostrar mensajes
+      //como en la pantalla de Inicio
+
+      throw new BadRequestException({mensaje:'Error de validacion'})
+    }else{*/
+      const respuesta = await this._comidaService.crear(comida);
+
+      const parametrosConsulta = `?accion=crear&nombre=${comida.nombrePlato}`;
+
+      response.redirect(
+        '/comida/inicio' + parametrosConsulta
+      )
+
+  }
+
 
   @Post('eliminar/:idComida')
   async eliminar(

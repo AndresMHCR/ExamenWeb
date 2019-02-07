@@ -1,7 +1,8 @@
 //usuario.entity.ts
 
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ComidaEntity } from '../comida/comida.entity';
+import { EventoEntity } from '../eventos/evento.entity';
 
 @Entity('ingrediente')
 export class IngredienteEntity{
@@ -32,6 +33,9 @@ export class IngredienteEntity{
     comida => comida.ingredientes
   )
   comida: ComidaEntity;
+
+  @ManyToMany(type => EventoEntity, evento => evento.ingredientes)
+  eventos: EventoEntity[];
 
 
 }

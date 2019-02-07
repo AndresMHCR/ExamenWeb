@@ -36,4 +36,10 @@ export class ComidaService{
   buscarPorId(idComida: number): Promise<ComidaEntity>{
     return this._comidaRepository.findOne(idComida);
   }
+  crear(comida: Comida): Promise<ComidaEntity> {
+
+    const comidaEntity: ComidaEntity = this._comidaRepository.create(comida);
+
+    return this._comidaRepository.save(comidaEntity)
+  }
 }

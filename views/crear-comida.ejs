@@ -28,12 +28,12 @@
                     </div>
 
                     <div>
-                        <label for="descripcion">Descripcion</label>
-                        <textarea id="descripcion"
-                                  name="descripcion"
-                                  cols="30" rows="4">
-                            <%= estaCreando ? '' : comida.descripcionPlato %>
-                        </textarea>
+                        <label for="descripcionPlato">Descripcion</label>
+                        <input id="descripcionPlato"
+                                  name="descripcionPlato"
+                                  type="text"
+                                  value ="<%= estaCreando ? '' : comida.descripcionPlato %>"
+                        </input>
                     </div>
                     <div>
                         <label for="nacionalidad">Nacionalidad</label>

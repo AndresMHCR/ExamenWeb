@@ -6,6 +6,7 @@ import { FindManyOptions, getConnection, Like } from 'typeorm';
 import {validate, ValidationError} from "class-validator";
 import { IngredienteService } from './ingrediente.service';
 import { IngredienteEntity } from './ingrediente.entity';
+import { ComidaEntity } from '../comida/comida.entity';
 
 @Controller('ingrediente')
 export class IngredienteController {
@@ -27,7 +28,7 @@ export class IngredienteController {
     let clase = undefined;
     let ingredientes: IngredienteEntity[];
 
-    if(idComida){  //acomodar esto
+    if(idComida &&  accion && nombre){  //acomodar esto
       //response.send('ok');
 
       const consulta: FindManyOptions<IngredienteEntity> = {
@@ -39,6 +40,28 @@ export class IngredienteController {
       };
       ingredientes = await this._ingredienteService.buscar(consulta);
       //response.send(ingredientes);
+      switch (accion) {
+        case 'borrar':
+          mensaje = `Ingrediente ${nombre} eliminado.`;
+          clase = 'alert alert-danger';
+          break;
+
+        case 'actualizar':
+          mensaje = `Ingrediente ${nombre} actualizado.`;
+          clase = 'alert alert-info';
+          break;
+      }
+    }
+
+    if (idComida){
+      const consulta: FindManyOptions<IngredienteEntity> = {
+        where: [
+          {
+            comida: Like(`%${idComida}%`)
+          }
+        ]
+      };
+      ingredientes = await this._ingredienteService.buscar(consulta);
     }else {
       ingredientes = await this._ingredienteService.buscar();
     }
@@ -74,6 +97,8 @@ export class IngredienteController {
     }
 
 
+
+
     response.render(
       'ingredientes',
       {
@@ -85,6 +110,55 @@ export class IngredienteController {
         idreferencia: idComida
       }
     );
+  }
+
+  @Get('crear-ingrediente')
+  crearIngredienteRuta(
+    @Res() response,
+    @Query('idComida') idComida: number
+  ) {
+    response.render(
+      'crear-ingrediente',
+      {
+        titulo:'Agregar Ingrediente',
+        idref: idComida
+      }
+    )
+  }
+
+  @Post('crear-ingrediente')
+  async crearIngredienteFuncion(
+    @Res() response,
+    @Body() ingrediente: Ingrediente,
+    @Query('idComida') idComida: ComidaEntity
+  ) {
+    /*
+        const objetoValidacionNoticia = new CreateNoticiaDto();
+
+        objetoValidacionNoticia.titulo = comida.titulo;
+        objetoValidacionNoticia.descripcion = comida.descripcion;
+
+        const errores: ValidationError[] =
+          await validate(objetoValidacionNoticia);
+
+        const hayErrores = errores.length>0;
+
+        if(hayErrores){
+          console.error(errores);
+          //redirect crear noticia, y
+          //en crear noticia deberian mostrar mensajes
+          //como en la pantalla de Inicio
+
+          throw new BadRequestException({mensaje:'Error de validacion'})
+        }else{*/
+    ingrediente.comida = idComida;
+    const respuesta = await this._ingredienteService.crear(ingrediente);
+    const parametrosConsulta = `?idComida=${idComida}&accion=crear&nombre=${ingrediente.nombreIngrediente}`;
+
+    response.redirect(
+      '/ingrediente/inicio' + parametrosConsulta
+    )
+
   }
 
   @Post('eliminar/:idIngrediente')
@@ -133,12 +207,15 @@ export class IngredienteController {
   async actualizarComidaMetodo(
     @Res() response,
     @Param('idIngrediente') idIngrediente: string,
-    @Body() ingrediente: Ingrediente
+    @Body() ingrediente: Ingrediente,
+    @Query('idComida') idComida: number
+
+
   ) {
     ingrediente.id = +idIngrediente;
     await this._ingredienteService.actualizar(ingrediente);
 
-    const parametrosConsulta = `?accion=actualizar&titulo=${ingrediente.nombreIngrediente}`;
+    const parametrosConsulta = `?idComida=${idComida}&accion=actualizar&nombre=${ingrediente.nombreIngrediente}`;
 
     response.redirect('/ingrediente/inicio' + parametrosConsulta);
 

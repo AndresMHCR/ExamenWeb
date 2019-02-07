@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {RolEntity} from "./rol.entity";
-import {FindOneOptions, Repository} from "typeorm";
+import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
 
 @Injectable()
@@ -9,6 +9,12 @@ export class RolService {
     @InjectRepository(RolEntity)
     private readonly _rolRepository:
       Repository<RolEntity>
-  ) {
+  ) {}
+
+  buscar(parametros?: FindManyOptions): Promise<RolEntity[]>{
+    return this._rolRepository.find(parametros)
+  }
+  buscarPorId(id: number): Promise<RolEntity> {
+    return this._rolRepository.findOne(id );
   }
 }

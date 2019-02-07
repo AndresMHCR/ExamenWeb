@@ -5,6 +5,7 @@ import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import {InjectRepository} from "@nestjs/typeorm";
 import { Comida, Ingrediente } from '../app.controller';
 import { IngredienteEntity } from './ingrediente.entity';
+import { ComidaEntity } from '../comida/comida.entity';
 
 @Injectable()
 export class IngredienteService{
@@ -35,6 +36,12 @@ export class IngredienteService{
 
   buscarPorId(idIngrediente: number): Promise<IngredienteEntity>{
     return this._ingredienteRepository.findOne(idIngrediente);
+  }
+  crear(ingrediente: Ingrediente): Promise<IngredienteEntity> {
+
+    const ingredienteEntity: IngredienteEntity = this._ingredienteRepository.create(ingrediente);
+
+    return this._ingredienteRepository.save(ingredienteEntity)
   }
 
 }
