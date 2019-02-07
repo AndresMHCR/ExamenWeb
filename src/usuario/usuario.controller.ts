@@ -7,11 +7,15 @@ import {FindManyOptions, Like} from "typeorm";
 import {validate, ValidationError} from "class-validator";
 import { UsuarioService } from './usuario.service';
 import { UsuarioEntity } from './usuario.entity';
+import { RolEntity } from '../rol/rol.entity';
+import { RolService } from '../rol/rol.service';
+import { IngredienteEntity } from '../ingrediente/ingrediente.entity';
 
 @Controller('usuario')
 export class UsuarioController {
 
-  constructor(private readonly _usuarioService: UsuarioService) {
+  constructor(private readonly _usuarioService: UsuarioService,
+              private readonly _rolService: RolService) {
 
   }
 
@@ -101,11 +105,15 @@ export class UsuarioController {
     const usuarioEncontrado = await this._usuarioService
       .buscarPorId(+idUsuario);
 
+    let roles: RolEntity[]
+
+    roles = await this._rolService.buscar();
     response
       .render(
         'rolesUsuario',
         {
-          usuario: usuarioEncontrado
+          usuario: usuarioEncontrado,
+          roles: roles
         }
       )
 
@@ -125,5 +133,44 @@ export class UsuarioController {
 
     response.redirect('/usuario/inicio' + parametrosConsulta);
 
+  }
+  @Post('agregar-rol/:idUsuario')
+  async agregarRolMetodo(
+    @Res() response,
+    @Param('idUsuario') idUsuario: string,
+    @Query('idRol') idRol: RolEntity
+  ){
+    const usuario = await this._usuarioService
+      .buscarPorId(+idUsuario);
+
+
+    const rolAAgregar = await this._rolService
+      .buscarPorId(+idRol)
+
+    usuario.roles.push(rolAAgregar);
+
+    this._usuarioService.actualizar(usuario);
+
+    const parametrosConsulta = `/${idUsuario}`;
+    response.redirect('/usuario/actualizar-usuario'+parametrosConsulta)
+  }
+
+  @Post('quitar-rol/:idUsuario')
+  async quitarRolPost(
+    @Res() response,
+    @Param('idUsuario') idUsuario: string,
+    @Query('idRol') idRol: RolEntity
+  ) {
+    const usuario = await this._usuarioService
+      .buscarPorId(+idUsuario);
+
+    const indexRol = await usuario.roles.indexOf(idRol);
+
+    usuario.roles.splice(indexRol,1);
+
+    await this._usuarioService.actualizar(usuario);
+
+    const parametrosConsulta = `/${idUsuario}`;
+    response.redirect('/usuario/actualizar-usuario' + parametrosConsulta)
   }
 }

@@ -12,10 +12,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">Usuario
+        <div class="col-sm-4">
+            <h1 class="title"> Usuario</h1>
             <div>
                 <label for="nombre">Nombre</label>
-                <input id="nombre"
+                <input disabled
+                        id="nombre"
                        name="nombre"
                        type="text"
                        value="<%= usuario.nombre%>"
@@ -23,7 +25,8 @@
             </div>
             <div>
                 <label for="correo">Correo</label>
-                <input id="correo"
+                <input disabled
+                        id="correo"
                        name="correo"
                        type="email"
                        value="<%= usuario.correo %>"
@@ -31,28 +34,55 @@
             </div>
             <div>
                 <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                <input id="fecha_nacimiento"
+                <input  disabled
+                        id="fecha_nacimiento"
                        name="fecha_nacimiento"
                        type="date"
                        value="<%= usuario.fechaNacimiento %>"
                 >
             </div>
         </div>
-        <div class="col-sm-3">Roles
+        <div class="col-sm-4">
+            <h2 class="title">Roles del usuario</h2>
+                <% usuario.roles.forEach((rol)=>{ %>
+                    <form action="/usuario/quitar-rol/<%= usuario.id %>?idRol=<%= rol.id %>" method="post">
+                        <button  type="submit"
+                                 class="btn btn-outline-danger btn-espaciado"><%= rol.nombre %><strong>.      [X]</strong>
+                        </button>
+                    </form>
+                <%})%>
+        </div>
+
+        <div class="col-sm-4">
+            <h3 class="titlr"> Agregar Roles</h3>
             <table class="table table-hover animated slideInLeft">
                 <thead>
                 <tr>
                     <!-- th -> table header -->
-                    <th width="100%">Roles</th>
+                    <th width="80%">Roles </th>
+                    <th width="20%"> </th>
                 </tr>
                 </thead>
                 <tbody>
+                <% roles.forEach( (rol)=> { %>
+                    <tr>
+                        <!-- td -> table detail -->
+                        <td><%= rol.nombre %></td>
+                        <td>
+                            <form action="/usuario/agregar-rol/<%=usuario.id%>?idRol=<%= rol.id%>" method="POST">
+
+                                <button class="btn btn-outline-success btn-block espaciado-boton"
+                                        type="submit">
+                                    Agregar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% }) %>
                 </tbody>
             </table>
-
         </div>
-
-        <div class="col-sm-3">Agregar roles</div>
 
     </div>
 

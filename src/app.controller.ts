@@ -92,7 +92,7 @@ export interface Usuario {
   id?: number;
   nombre: string;
   correo: string;
-  fecha_nacimiento: Date;
+  fechaNacimiento: Date;
   roles: RolEntity[];
 }
 
