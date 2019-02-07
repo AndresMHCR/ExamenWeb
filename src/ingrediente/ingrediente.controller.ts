@@ -1,5 +1,5 @@
 
-import {BadRequestException, Body, Controller, Get, Param, Post, Query, Res} from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, Post, Query, Res, Session } from '@nestjs/common';
 import { Comida, Ingrediente, Usuario } from '../app.controller';
 
 import { FindManyOptions, getConnection, Like } from 'typeorm';
@@ -21,8 +21,12 @@ export class IngredienteController {
     @Query('idComida') idComida: number,
     @Query('busqueda') busqueda: string,
     @Query('accion') accion: string,
-    @Query('nombre') nombre: string
+    @Query('nombre') nombre: string,
+    @Session() sesion
   ) {
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
 
     let mensaje = undefined;
     let clase = undefined;
@@ -115,8 +119,13 @@ export class IngredienteController {
   @Get('crear-ingrediente')
   crearIngredienteRuta(
     @Res() response,
-    @Query('idComida') idComida: number
+    @Query('idComida') idComida: number,
+    @Session() sesion
   ) {
+
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
     response.render(
       'crear-ingrediente',
       {
@@ -184,8 +193,12 @@ export class IngredienteController {
   async actualizarComidaVista(
     @Res() response,
     @Param('idIngrediente') idIngrediente: string,
-    @Query('idComida') idComida:number
+    @Query('idComida') idComida:number,
+    @Session() sesion
   ) {
+    if(!sesion.usuario){
+      response.redirect('/login')
+    }
     // El "+" le transforma en numero a un string
     // numerico
     const ingredienteEncontrado = await this._ingredienteService

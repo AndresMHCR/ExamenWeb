@@ -1,0 +1,41 @@
+<%- include('header',{titulo:'Registro de evento'});%>
+
+
+<div class = "container">
+    <% const existeMensaje = typeof mensaje !== "undefined" %>
+
+    <% if(existeMensaje){ %>
+        <div class="<%= clase %>" role="alert">
+            <span class="font-weight-bold">
+                MENSAJE
+            </span> : <%= mensaje %>
+        </div>
+    <% } %>
+
+
+    <div  class="row">
+        <div  class="col-sm-6 centrar">
+            <h1>Registro de Evento</h1>
+            <p>Ingresa los datos del evento</p>
+            <form action="/evento/crear-evento" method="post">
+                <div>
+                    <label for="nombreEvento">Nombre</label>
+                    <input id="nombreEvento" type="text" name="nombreEvento">
+                </div>
+                <div>
+                    <label for="fechaEvento">Fecha Evento</label>
+                    <input id="fechaEvento" type="date" name="fechaEvento">
+                </div>
+                <div>
+                    <label for="latitud">Latitud</label>
+                    <input id="latitud" type="text" name="latitud">
+                </div>
+                <div>
+                    <label for="longitud">Longitud</label>
+                    <input id="longitud" type="text" name="longitud">
+                </div>
+                <button>Registrar Evento</button>
+            </form>
+        </div>
+    </div>
+</div>
