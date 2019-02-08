@@ -65,14 +65,21 @@ export class ComidaController {
       comidas = await this._comidaService.buscar(consulta);
 
     }else {
-      comidas = await this._comidaService.buscar();
+      const consulta: FindManyOptions<ComidaEntity> = {
+        where: [
+          {
+            usuario: Like(`%${sesion.usuario.id}%`)
+          }
+        ]
+      };
+      comidas = await this._comidaService.buscar(consulta);
+
     }
 
 
     response.render(
       'comidas',
       {
-        usuario: 'Adrian',
         arreglo: comidas, // AQUI!
         booleano: false,
         mensaje: mensaje,
@@ -122,6 +129,7 @@ export class ComidaController {
 
       throw new BadRequestException({mensaje:'Error de validacion'})
     }else{*/
+      
       const respuesta = await this._comidaService.crear(comida);
 
       const parametrosConsulta = `?accion=crear&nombre=${comida.nombrePlato}`;

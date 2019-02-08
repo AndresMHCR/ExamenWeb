@@ -19,7 +19,7 @@ import { EventoModule } from './eventos/evento.module';
       {
         type: 'mysql',
         host: 'localhost',
-        port: 32769 ,
+        port: 32771 ,
         database: 'comida',
         username: 'andres',
         password: '12345',
